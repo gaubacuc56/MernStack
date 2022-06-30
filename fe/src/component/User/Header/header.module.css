@@ -1,0 +1,104 @@
+header {
+    background-color: white;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 65px;
+    width: 100%;
+    box-shadow: 5px 0 5px grey;
+}
+
+.main_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.homeReload {
+    margin-top: 13px;
+    outline: none;
+}
+
+.searchArea {
+    position: relative;
+
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 50px;
+    background-color: #e4e4e4;
+    padding-left: 20px;
+    margin-left: 500px;
+    outline: none;
+}
+
+.searchBar {
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 50px;
+    background-color: #e4e4e4 !important;
+    outline: none;
+    font-family: var(--main-font);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.searchArea a {
+    text-decoration: none;
+    color: black;
+}
+
+.searchArea i {
+    position: absolute;
+    top: 12px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.operation {
+    display: flex;
+}
+
+.account,
+.cart {
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+    margin-left: 35px;
+    transition: all linear 0.2s;
+}
+
+.account:hover,
+.cart:hover {
+    color: var(--main-color);
+}
+
+.cart i {
+    font-size: 40px;
+}
+
+.account i {
+    font-size: 25px;
+}
+
+.cart {
+    position: relative;
+}
+
+.cart_number {
+    color: white;
+    font-family: var(--main-font);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+    background-color: var(--main-color);
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    left: 20px;
+    bottom: 15px;
+}

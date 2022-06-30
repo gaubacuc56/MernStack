@@ -1,0 +1,35 @@
+:root {
+    --main-font: "Open Sans", sans-serif;
+    --main-color: #58b3f0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+.grid {
+    max-width: 720px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (min-width: 720px) {
+    .grid {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 1140px) {
+    .grid {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 1140px;
+    }
+}
