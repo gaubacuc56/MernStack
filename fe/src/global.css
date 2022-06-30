@@ -1,36 +1,36 @@
 :root {
-    --main-font: "Open Sans", sans-serif;
-    --main-color: #58b3f0;
+  --main-font: "Open Sans", sans-serif;
+  --main-color: #58b3f0;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    height: 100%;
-    scroll-behavior: smooth;
+  margin: 0;
+  height: 100%;
 }
 
 .grid {
-    max-width: 768px;
-    width: 100%;
-    margin: 0 auto;
+  max-width: 768px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 @media (min-width: 768px) {
-    .grid {
-        width: 100%;
-        margin: 0 auto;
-        max-width: 768px;
-    }
+  .grid {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 768px;
+  }
 }
 
 @media (min-width: 1140px) {
-    .grid {
-        width: 100%;
-        margin: 0 auto;
-        max-width: 1140px;
-    }
+  .grid {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1140px;
+  }
 }
