@@ -41,6 +41,10 @@ header {
     transition: all linear 0.2s;
 }
 
+.account {
+    transform: translateX(30px);
+}
+
 .account:hover,
 .cart:hover {
     color: var(--main-color);
@@ -70,17 +74,23 @@ header {
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    left: 20px;
-    bottom: 15px;
+    left: 35px;
+    bottom: 18px;
 }
 
-@media (min-width: 720px) {
+#cart_icon {
+    color: black;
+    font-size: 25px;
+    margin-left: 20px;
+}
+
+@media (min-width: 768px) {
     .main_container {
         padding: 0;
     }
 
     .logo {
-        transform: scale(1);
+        width: 70%;
     }
 
     .searchArea {
@@ -90,7 +100,7 @@ header {
         border: none;
         border-radius: 50px;
         background-color: #e4e4e4;
-        margin-left: 500px;
+        margin-left: 130px;
         padding-left: 20px;
         outline: none;
     }
@@ -118,6 +128,17 @@ header {
         right: 0px;
         cursor: pointer;
     }
+
+
+
 }
 
-@media (min-width: 1140px) {}
+@media (min-width: 1140px) {
+    .searchArea {
+        margin-left: 500px;
+    }
+
+    .logo {
+        width: 90%;
+    }
+}

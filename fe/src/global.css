@@ -14,16 +14,16 @@ body {
 }
 
 .grid {
-    max-width: 720px;
+    max-width: 768px;
     width: 100%;
     margin: 0 auto;
 }
 
-@media (min-width: 720px) {
+@media (min-width: 768px) {
     .grid {
         width: 100%;
         margin: 0 auto;
-        max-width: 720px;
+        max-width: 768px;
     }
 }
 

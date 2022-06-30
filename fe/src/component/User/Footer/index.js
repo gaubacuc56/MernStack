@@ -5,14 +5,14 @@ export default function Footer() {
     return (
         <div className={style.footer}>
             <div className={`${style.footer_container} grid row justify-content-between`} >
-                <div className={`${style.footer_container_item} ${style.contact} 	col-xl-3  col-sm-6 col-12`} >
+                <div className={`${style.footer_container_item} ${style.contact} 	col-lg-3  col-sm-6 col-12`} >
                     <h3>LIÊN HỆ</h3>
                     <div className={style.separate}></div>
                     <p>Khu phố 6, phường Linh Trung, TP. Thủ Đức, TP. Hồ Chí Minh</p>
                     <p>Phone: 0938559501</p>
                     <p >Email: uit.edu.vn@gmail.com</p>
                 </div>
-                <div className={`${style.footer_container_item} ${style.policy} col-xl-3  col-sm-6 col-12`}  >
+                <div className={`${style.footer_container_item} ${style.policy} col-lg-3  col-sm-6 col-12`}  >
                     <h3>CHÍNH SÁCH HỖ TRỢ</h3>
                     <div className={style.separate}></div>
                     <a href="#">Chính sách đổi sản phẩm</a>
@@ -20,7 +20,7 @@ export default function Footer() {
                     <a href="#">Chính sách bảo hành</a>
                     <a href="#">Chính sách giao hàng</a>
                 </div>
-                <div className={`${style.footer_container_item}  ${style.link}  col-xl-3  col-sm-6 col-12`} >
+                <div className={`${style.footer_container_item}  ${style.link}  col-lg-3  col-sm-6 col-12`} >
                     <h3>LIÊN KẾT</h3>
                     <div className={style.separate}></div>
                     <p>Hãy kết nối với chúng tôi</p>
@@ -32,7 +32,7 @@ export default function Footer() {
                     </div>
                     {/*    <img src="/img/dkbocongthuong.png"></img> */}
                 </div>
-                <div className={`${style.footer_container_item}  ${style.transfers}  col-xl-3  col-sm-6 col-12`} >
+                <div className={`${style.footer_container_item}  ${style.transfers}  col-lg-3  col-sm-6 col-12`} >
                     <h3>THÔNG TIN CHUYỂN KHOẢN</h3>
                     <div className={style.separate}></div>
                     <div className={style.transfers_info}>

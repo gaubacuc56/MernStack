@@ -7,26 +7,23 @@ export default function Header() {
     const [form, setForm] = useState(false)
     const [find_value, setFind_value] = useState('')
     const isDesktop = useMediaQuery("(min-width:1140px)");
+    const isNotMobile = useMediaQuery("(min-width:768px)");
     if (form === true) {
         return (
             <div>
                 <header>
                     <div className={`${style.main_container} grid`}>
                         <a href="#" className={style.homeReload}>
-                            {/*  <Link to="/">
-                                <img src="/img/logo.png" alt="" />
-                            </Link> */}
                             <img src={logo} className={style.logo} alt="logo" />
-
                         </a>
                         {
-                            isDesktop ?
+                            isNotMobile ?
                                 <div className={style.searchArea}>
                                     <input onChange={(e) => setFind_value(e.target.value)} type="text" className={style.searchBar} placeholder="Tìm kiếm sản phẩm" />
-                                    {/*  <Link exact to={`/Sanpham_display/${find_value}`} >
-                                <i className="fas fa-search"></i>
-                            </Link> */}
-                                    <i className="fas fa-search"></i>
+                                    <Link /* to={`/Sanpham_display/${find_value}`} */ to='/'>
+                                        <i className="fas fa-search"></i>
+                                    </Link>
+
                                 </div>
                                 : ""
                         }
@@ -38,15 +35,21 @@ export default function Header() {
                                 <i className="far fa-user" />
                             </div>
 
-                            {/* <Link to="/Cart">
+                            <Link to="/Cart">
                                 <div href className={style.cart}>
                                     <i id={style.cart_icon} className="fas fa-shopping-cart" />
-                                           <div className={style.cart_number}>{cart.length}</div>
+                                    <div className={style.cart_number}>{/* {cart.length} */}</div>
                                 </div>
-                            </Link> */}
+                            </Link>
 
-                            <i id={style.cart_icon} className="fas fa-shopping-cart" />
+
                         </div>
+
+                        {
+                            !isNotMobile
+                                ? <i style={{ fontSize: '25px', marginLeft: '25px' }} className="fa-solid fa-bars"></i>
+                                : ""
+                        }
                     </div>
                 </header>
                 {/*      <Account_Operation></Account_Operation> */}
@@ -59,19 +62,16 @@ export default function Header() {
             <header>
                 <div className={`${style.main_container} grid`}>
                     <a href="#" className={style.homeReload}>
-                        {/*   <Link to="/">
-                            <img src="/img/logo.png" alt="" />
-                        </Link> */}
                         <img src={logo} className={style.logo} alt="" />
                     </a>
                     {
-                        isDesktop ?
+                        isNotMobile ?
                             <div className={style.searchArea}>
                                 <input onChange={(e) => setFind_value(e.target.value)} type="text" className={style.searchBar} placeholder="Tìm kiếm sản phẩm" />
-                                {/*  <Link exact to={`/Sanpham_display/${find_value}`} >
-                                <i className="fas fa-search"></i>
-                            </Link> */}
-                                <i className="fas fa-search"></i>
+                                <Link /* to={`/Sanpham_display/${find_value}`} */ to='/'>
+                                    <i className="fas fa-search"></i>
+                                </Link>
+
                             </div>
                             : ""
                     }
@@ -82,15 +82,21 @@ export default function Header() {
                             <i className="far fa-user" />
                         </div>
 
-                        {/*    <Link to="/Cart">
-                            <div href className="cart">
+                        <Link to="/Cart">
+                            <div href className={style.cart}>
                                 <i id={style.cart_icon} className="fas fa-shopping-cart" />
-                                   <div className={style.cart_number}>{cart.length}</div>
+                                <div className={style.cart_number}>{/* {cart.length} */}1</div>
                             </div>
-                        </Link> */}
-                        <i id={style.cart_icon} className="fas fa-shopping-cart" />
+                        </Link>
+
 
                     </div>
+
+                    {
+                        !isNotMobile
+                            ? <i style={{ fontSize: '25px', marginLeft: '25px' }} className="fa-solid fa-bars"></i>
+                            : ""
+                    }
                 </div>
             </header>
         );

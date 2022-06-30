@@ -1,12 +1,11 @@
-import Header from "./component/User/Header";
-import Footer from "./component/User/Footer";
+
+import { useRoutes } from 'react-router-dom';
+
+import { routes } from './routes';
+
 function App() {
-  return (
-    <div className="App">
-      <Header></Header>
-      <Footer></Footer>
-    </div>
-  );
+  const router = useRoutes(routes);
+  return <>{router}</>;
 }
 
 export default App;
