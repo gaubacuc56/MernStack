@@ -17,8 +17,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\"",
-    "prepare": "cd .. && husky install front/.husky"
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
