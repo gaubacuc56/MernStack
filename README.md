@@ -1,4 +1,4 @@
-## RossyStore MERN-STACK E-Commerce Website
+# RossyStore MERN-STACK E-Commerce Website
 
 ## Technology
 
