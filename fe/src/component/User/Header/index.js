@@ -16,16 +16,21 @@ export default function Header() {
                             {/*  <Link to="/">
                                 <img src="/img/logo.png" alt="" />
                             </Link> */}
-                            <img src={logo} alt="logo" />
+                            <img src={logo} className={style.logo} alt="logo" />
 
                         </a>
-                        <div className={style.searchArea}>
-                            <input onChange={(e) => setFind_value(e.target.value)} type="text" className={style.searchBar} placeholder="Tìm kiếm sản phẩm" />
-                            {/*  <Link exact to={`/Sanpham_display/${find_value}`} >
+                        {
+                            isDesktop ?
+                                <div className={style.searchArea}>
+                                    <input onChange={(e) => setFind_value(e.target.value)} type="text" className={style.searchBar} placeholder="Tìm kiếm sản phẩm" />
+                                    {/*  <Link exact to={`/Sanpham_display/${find_value}`} >
                                 <i className="fas fa-search"></i>
                             </Link> */}
-                            <i className="fas fa-search"></i>
-                        </div>
+                                    <i className="fas fa-search"></i>
+                                </div>
+                                : ""
+                        }
+
 
                         <div className={style.operation}  >
 
@@ -57,15 +62,19 @@ export default function Header() {
                         {/*   <Link to="/">
                             <img src="/img/logo.png" alt="" />
                         </Link> */}
-                        <img src={logo} alt="" />
+                        <img src={logo} className={style.logo} alt="" />
                     </a>
-                    <div className={style.searchArea}>
-                        <input onChange={(e) => setFind_value(e.target.value)} type="text" className={style.searchBar} placeholder="Tìm kiếm sản phẩm" />
-                        {/*     <Link exact to={`/Sanpham_display/${find_value}`} >
-                            <i className="fas fa-search"></i>
-                        </Link> */}
-                        <i className="fas fa-search"></i>
-                    </div>
+                    {
+                        isDesktop ?
+                            <div className={style.searchArea}>
+                                <input onChange={(e) => setFind_value(e.target.value)} type="text" className={style.searchBar} placeholder="Tìm kiếm sản phẩm" />
+                                {/*  <Link exact to={`/Sanpham_display/${find_value}`} >
+                                <i className="fas fa-search"></i>
+                            </Link> */}
+                                <i className="fas fa-search"></i>
+                            </div>
+                            : ""
+                    }
 
                     <div className={style.operation}>
 
