@@ -13,6 +13,11 @@ body {
   height: 100%;
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+  color: white !important;
+}
+
 .grid {
   max-width: 768px;
   width: 100%;
