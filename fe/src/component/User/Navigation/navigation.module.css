@@ -24,7 +24,7 @@
   transition: all linear 0.2s;
   border-bottom-style: solid;
   border-bottom-color: white;
-  border-bottom-width: 2px;
+  border-bottom-width: 3px;
 }
 
 .item:hover {
