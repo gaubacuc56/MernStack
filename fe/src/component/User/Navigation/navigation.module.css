@@ -1,39 +1,38 @@
 .navigation {
-    margin-top: 65px;
-    height: 50px;
-    width: 100%;
+  margin-top: 65px;
+  height: 50px;
+  width: 100%;
 }
 
 .navigation ul {
-    height: 50px;
-    max-width: 710px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    padding: 0;
+  height: 50px;
+  max-width: 710px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
 }
 
 .item {
-    cursor: pointer;
-    list-style-type: none;
-    display: block;
-    line-height: 50px;
-    font-weight: 600;
-    font-size: 15px;
-    transition: all linear 0.2s;
-    border-bottom-style: solid;
-    border-bottom-color: white;
-    border-bottom-width: 2px;
+  cursor: pointer;
+  list-style-type: none;
+  display: block;
+  line-height: 50px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all linear 0.2s;
+  border-bottom-style: solid;
+  border-bottom-color: white;
+  border-bottom-width: 2px;
 }
 
 .item:hover {
-    border-bottom-color: var(--main-color);
+  border-bottom-color: var(--main-color);
 }
 
-
 .item a {
-    text-decoration: none;
-    color: black;
-    transition: all linear 0.2s;
+  text-decoration: none;
+  color: black;
+  transition: all linear 0.2s;
 }

@@ -1,0 +1,21 @@
+.slideShow1 {
+  margin-top: 65px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 768px) {
+  .slideShow1 {
+    margin-top: 20px;
+  }
+
+  img {
+    height: 100%;
+  }
+}
+
+@media (min-width: 1140px) {
+}
