@@ -14,10 +14,10 @@ export default function Slideshow() {
     <div className={`${style.slideShow1} grid d-flex`}>
       <Swiper slidesPerView={1} spaceBetween={30} loop={true}>
         <SwiperSlide>
-          <img src={slide1}> </img>
+          <img src={slide1} />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={slide2}></img>
+          <img src={slide2} />
         </SwiperSlide>
       </Swiper>
     </div>
