@@ -6,7 +6,7 @@
 
 - Back-end: NodeJS, ExpressJS, MongoDB.
 
-## Main-function
+## Features
 
 - User: Login, Register, Add product to cart, Buy products, Check invoice history, Receive email, Multi-language.
 
@@ -16,10 +16,10 @@
 
 ### For back-end server:
 
-- In 'be' folder, install neccesary packages with command: 'npm i'.
-- Run command 'npm run server' to start the server at local.
+- In "be" folder, install neccesary packages with command: "npm i".
+- Run command "npm run server" to start the server at local.
 
 ### For front-end:
 
-- In 'fe' folder, install neccesary packages with command: 'npm i'.
-- Run command 'npm start' to start the website at local.
+- In "fe" folder, install neccesary packages with command: "npm i".
+- Run command "npm start" to start the website at local.
