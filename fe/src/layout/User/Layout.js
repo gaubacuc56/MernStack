@@ -17,7 +17,7 @@ export default function Layout() {
         product_name="Nike Air Max"
         product_price="4"
         product_type="soccer"
-        imageURL="https://res.cloudinary.com/dd0x1hbtf/image/upload/v1641001174/xf0nvs5qufelq47sibpl.jpg"
+        imageURL="https://res.cloudinary.com/dd0x1hbtf/image/upload/v1656600836/soccer/02b206b6-d3b4-41b4-8840-41cecd12b959_pm9ojf.webp"
       ></ProductCard>
       <Outlet />
       <Footer></Footer>
