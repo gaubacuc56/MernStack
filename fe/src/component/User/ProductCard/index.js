@@ -4,9 +4,9 @@ import style from "./productCard.module.css";
 
 export default function ProductCard(props) {
   return (
-    <div className={style.item}>
+    <div key={props._id} className={`${style.item}`}>
       <Link to={`/Sanpham_chiTiet/${props.id}`}>
-        <img src={props.imageURL}></img>
+        <img src={props.product_avatar}></img>
       </Link>
       <div
         className={`${style.item_information} d-flex justify-content-between align-items-center`}
