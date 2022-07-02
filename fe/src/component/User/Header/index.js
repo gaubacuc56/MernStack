@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import style from "./header.module.css";
 import logo from "../../../assets/img/logo.png";
 import useMediaQuery from "../../../hooks/useMediaQuery";
+import { useTranslation } from "react-i18next";
 export default function Header() {
+  const { t } = useTranslation()
   const [form, setForm] = useState(false);
   const [find_value, setFind_value] = useState("");
   const isDesktop = useMediaQuery("(min-width:1140px)");
@@ -22,7 +24,7 @@ export default function Header() {
                   onChange={(e) => setFind_value(e.target.value)}
                   type="text"
                   className={style.searchBar}
-                  placeholder="Tìm kiếm sản phẩm"
+                  placeholder={t('HEADER.FIND')}
                 />
                 <Link /* to={`/Sanpham_display/${find_value}`} */ to="/">
                   <i className="fas fa-search"></i>
@@ -51,7 +53,8 @@ export default function Header() {
                 className="fa-solid fa-bars"
               ></i>
             ) : (
-              ""
+              <i style={{ cursor: 'pointer', fontSize: "25px", marginLeft: "25px" }} class="fa-solid fa-globe"></i>
+
             )}
           </div>
         </header>
@@ -71,7 +74,7 @@ export default function Header() {
                 onChange={(e) => setFind_value(e.target.value)}
                 type="text"
                 className={style.searchBar}
-                placeholder="Tìm kiếm sản phẩm"
+                placeholder={t('HEADER.FIND')}
               />
               <Link /* to={`/Sanpham_display/${find_value}`} */ to="/">
                 <i className="fas fa-search"></i>
@@ -92,6 +95,7 @@ export default function Header() {
                 <div className={style.cart_number}>{/* {cart.length} */}1</div>
               </div>
             </Link>
+
           </div>
 
           {!isNotMobile ? (
@@ -100,8 +104,9 @@ export default function Header() {
               className="fa-solid fa-bars"
             ></i>
           ) : (
-            ""
+            <i style={{ cursor: 'pointer', fontSize: "25px", marginLeft: "25px" }} class="fa-solid fa-globe"></i>
           )}
+
         </div>
       </header>
     );

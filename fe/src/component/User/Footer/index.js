@@ -1,29 +1,30 @@
 import React from 'react'
 import style from './footer.module.css'
-
+import { useTranslation } from 'react-i18next';
 export default function Footer() {
+    const { t } = useTranslation()
     return (
         <div className={style.footer}>
             <div className={`${style.footer_container} grid row justify-content-between`} >
                 <div className={`${style.footer_container_item} ${style.contact} 	col-lg-3  col-sm-6 col-12`} >
-                    <h3>LIÊN HỆ</h3>
+                    <h3>{t('FOOTER.CONTACT.TITLE')}</h3>
                     <div className={style.separate}></div>
-                    <p>Khu phố 6, phường Linh Trung, TP. Thủ Đức, TP. Hồ Chí Minh</p>
+                    <p>{t('FOOTER.CONTACT.ADDRESS')}</p>
                     <p>Phone: 0938559501</p>
                     <p >Email: uit.edu.vn@gmail.com</p>
                 </div>
                 <div className={`${style.footer_container_item} ${style.policy} col-lg-3  col-sm-6 col-12`}  >
-                    <h3>CHÍNH SÁCH HỖ TRỢ</h3>
+                    <h3>{t('FOOTER.POLICY.TITLE')}</h3>
                     <div className={style.separate}></div>
-                    <a href="#">Chính sách đổi sản phẩm</a>
-                    <a href="#">Chính sách trả góp</a>
-                    <a href="#">Chính sách bảo hành</a>
-                    <a href="#">Chính sách giao hàng</a>
+                    <a href="#">{t('FOOTER.POLICY.SWAP')}</a>
+                    <a href="#">{t('FOOTER.POLICY.INSTALMENT')}</a>
+                    <a href="#">{t('FOOTER.POLICY.CARE')}</a>
+                    <a href="#">{t('FOOTER.POLICY.DELIVERY')}</a>
                 </div>
                 <div className={`${style.footer_container_item}  ${style.link}  col-lg-3  col-sm-6 col-12`} >
-                    <h3>LIÊN KẾT</h3>
+                    <h3>{t('FOOTER.LINK.TITLE')}</h3>
                     <div className={style.separate}></div>
-                    <p>Hãy kết nối với chúng tôi</p>
+                    <p>{t('FOOTER.LINK.DESC')}</p>
                     <div className={style.social_flatform}>
                         <i className="fab fa-facebook-f"></i>
                         <i className="fab fa-twitter"></i>
@@ -33,7 +34,7 @@ export default function Footer() {
                     {/*    <img src="/img/dkbocongthuong.png"></img> */}
                 </div>
                 <div className={`${style.footer_container_item}  ${style.transfers}  col-lg-3  col-sm-6 col-12`} >
-                    <h3>THÔNG TIN CHUYỂN KHOẢN</h3>
+                    <h3>{t('FOOTER.BANK.TITLE')}</h3>
                     <div className={style.separate}></div>
                     <div className={style.transfers_info}>
                         <p>BIDV:   1331 00000 74767</p>

@@ -3,9 +3,11 @@ import axios from "axios";
 import ProductCard from "../../../component/User/ProductCard";
 import { Link } from "react-router-dom";
 import { api_url } from "../../../config/config";
+import { useTranslation } from "react-i18next";
 import style from "./productContainer.module.css";
 export default function ProductContainer(props) {
   const [product, setProduct] = useState([]);
+  const { t } = useTranslation()
   useEffect(() => {
     function random_item(array) {
       return array[Math.floor(Math.random() * array.length)];
@@ -32,8 +34,8 @@ export default function ProductContainer(props) {
       <div className={`${style.title_area} `}>
         <div className={style.left_separate}></div>
         <div className={style.title_content}>
-          <h3>{props.category}</h3>
-          <p>Hàng luôn được cập nhật thường xuyên</p>
+          <h3>{t(`PRO_CONTAINER.TITLE.${props.category}`)}</h3>
+          <p>{t('PRO_CONTAINER.SUBTITLE')}</p>
         </div>
         <div className={style.right_separate}></div>
       </div>
@@ -54,7 +56,7 @@ export default function ProductContainer(props) {
       </div>
       <div className={style.btnArea}>
         <Link to={`/Sanpham_display/all`}>
-          <button className={style.showAll_btn}>Xem tất cả</button>
+          <button className={style.showAll_btn}>{t('PRO_CONTAINER.BUTTON')}</button>
         </Link>
       </div>
     </div>

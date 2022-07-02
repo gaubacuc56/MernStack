@@ -1,6 +1,6 @@
 
 import { useRoutes } from 'react-router-dom';
-
+import './i18next';
 import { routes } from './routes';
 
 function App() {

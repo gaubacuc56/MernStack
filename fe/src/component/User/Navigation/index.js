@@ -2,7 +2,10 @@ import React from 'react'
 import style from './navigation.module.css'
 import { Link } from 'react-router-dom';
 import useMediaQuery from '../../../hooks/useMediaQuery'
+import { useTranslation } from "react-i18next";
+
 export default function Navigation() {
+    const { t } = useTranslation()
     const isNotMobile = useMediaQuery("(min-width:768px)");
     return (
         <>
@@ -11,38 +14,36 @@ export default function Navigation() {
                     ? <div className={style.navigation}>
                         <ul className={style.list}>
                             <li className={style.item}>
-
-
-
                                 <Link to="/">
-                                    TRANG CHỦ
+                                    {t('NAVIGATION.HOME')}
                                 </Link>
+                            </li>
+                            <li className={style.item}>
+                                <Link to={"/Gioithieu"}>
+                                    {t('NAVIGATION.RUNNING')}
+                                </Link>
+                            </li>
 
+                            <li className={style.item}>
+                                <Link to={"/Gioithieu"}>
+                                    {t('NAVIGATION.SOCCER')}
+                                </Link>
                             </li>
                             <li className={style.item}>
                                 <Link to={"/Gioithieu"}>
-                                    RUNNING
-                                </Link>
-                            </li>
+                                    {t('NAVIGATION.BASKETBALL')}
 
-                            <li className={style.item}>
-                                <Link to={"/Gioithieu"}>
-                                    SOCCER
                                 </Link>
                             </li>
                             <li className={style.item}>
                                 <Link to={"/Gioithieu"}>
-                                    BASKETBALL
+                                    {t('NAVIGATION.TENNIS')}
                                 </Link>
                             </li>
                             <li className={style.item}>
                                 <Link to={"/Gioithieu"}>
-                                    TENNIS
-                                </Link>
-                            </li>
-                            <li className={style.item}>
-                                <Link to={"/Gioithieu"}>
-                                    LIFESTYLE
+                                    {t('NAVIGATION.LIFESTYLE')}
+
                                 </Link>
                             </li>
 

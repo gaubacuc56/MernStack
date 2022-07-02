@@ -13,7 +13,7 @@ export default function Layout() {
       <Navigation></Navigation>
       <Slideshow></Slideshow>
       <Service></Service>
-      <ProductContainer category="Basketball"></ProductContainer>
+      <ProductContainer category="TENNIS"></ProductContainer>
       <Outlet />
       <Footer></Footer>
     </>
