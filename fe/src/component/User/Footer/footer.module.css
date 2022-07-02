@@ -149,6 +149,26 @@
         padding-top: 40px !important;
     }
 
+    .footer_bottom {
+        width: 100%;
+        align-items: center;
+    }
+
+    .languageContainer {
+        width: 150px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 5px;
+        margin-left: 30px;
+        cursor: pointer;
+    }
+
+    .languageContainer span {
+        color: white;
+
+    }
 }
 
 @media (min-width: 992px) {

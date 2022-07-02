@@ -2,7 +2,13 @@ import React from 'react'
 import style from './footer.module.css'
 import { useTranslation } from 'react-i18next';
 export default function Footer() {
-    const { t } = useTranslation()
+    const { t, i18n } = useTranslation()
+    const handleLanguage = () => {
+        if (i18n.language === 'vn')
+            i18n.changeLanguage('en')
+        else if (i18n.language === 'en')
+            i18n.changeLanguage('vn')
+    }
     return (
         <div className={style.footer}>
             <div className={`${style.footer_container} grid row justify-content-between`} >
@@ -46,7 +52,13 @@ export default function Footer() {
                 </div>
             </div>
             <div className={style.longSeparate}></div>
-            <p className={style.copyRight}>© 2021 All rights reserved. ROSSY STORE</p>
+            <div className={`${style.footer_bottom} grid d-flex justify-content-between`}>
+                <p className={style.copyRight}>© 2021 All rights reserved. ROSSY STORE</p>
+                <div onClick={() => handleLanguage()} className={style.languageContainer}>
+                    <i style={{ cursor: 'pointer', fontSize: "25px", color: 'white' }} className="fa-solid fa-globe"></i>
+                    <span>{t('FOOTER.LANGUAGE')}</span>
+                </div>
+            </div>
         </div>
     );
 }

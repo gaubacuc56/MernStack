@@ -53,7 +53,7 @@ export default function Header() {
                 className="fa-solid fa-bars"
               ></i>
             ) : (
-              <i style={{ cursor: 'pointer', fontSize: "25px", marginLeft: "25px" }} class="fa-solid fa-globe"></i>
+              ""
 
             )}
           </div>
@@ -104,8 +104,8 @@ export default function Header() {
               className="fa-solid fa-bars"
             ></i>
           ) : (
-            <i style={{ cursor: 'pointer', fontSize: "25px", marginLeft: "25px" }} class="fa-solid fa-globe"></i>
-          )}
+            "")
+          }
 
         </div>
       </header>
