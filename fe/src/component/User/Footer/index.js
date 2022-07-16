@@ -23,7 +23,7 @@ export default function Footer() {
                     <h3>{t('FOOTER.POLICY.TITLE')}</h3>
                     <div className={style.separate}></div>
                     <a href="#">{t('FOOTER.POLICY.SWAP')}</a>
-                    <a href="#">{t('FOOTER.POLICY.')}</a>
+                    <a href="#">{t('FOOTER.POLICY.INSTALMENT')}</a>
                     <a href="#">{t('FOOTER.POLICY.CARE')}</a>
                     <a href="#">{t('FOOTER.POLICY.DELIVERY')}</a>
                 </div>
