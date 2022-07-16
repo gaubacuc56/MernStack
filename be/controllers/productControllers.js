@@ -28,6 +28,21 @@ const productControllers = {
     }
   },
 
+  getProductByValue: async (req, res) => {
+    try {
+      const product = await Product.find({
+        "$or": [
+          { product_name: { $regex: req.params.value } },
+          { product_categories: { $regex: req.params.value } }
+        ]
+      });
+      /* <=> SELECT * FROM Product where Product.id = <id trả về> */
+      res.status(200).json(product);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+
   updateAProduct: async (req, res) => {
     try {
       const product = await Product.findById(req.params.id);

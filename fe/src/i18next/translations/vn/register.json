@@ -1,0 +1,9 @@
+{
+    "REGISTER.TITLE": "Đăng ký",
+    "REGISTER.FULLNAME": "Họ và tên",
+    "REGISTER.EMAIL": "Email",
+    "REGISTER.PASSWORD": "Mật khẩu",
+    "REGISTER.REPASSWORD": "Nhập lại mật khẩu",
+    "REGISTER.QUESTION": "Bạn đã có tài khoản ?",
+    "REGISTER.SWITCH": "Đăng nhập"
+}

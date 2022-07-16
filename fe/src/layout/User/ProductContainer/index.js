@@ -16,7 +16,7 @@ export default function ProductContainer(props) {
     const getProduct = async () => {
       const result = await axios({
         method: "get",
-        url: `${api_url}/product/getAll`,
+        url: `${api_url}/product/getProductByValue/${props.category}`,
       });
       let arr = [];
       for (let i = 0; i < 6; i++) {

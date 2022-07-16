@@ -1,0 +1,9 @@
+{
+    "REGISTER.TITLE": "Register",
+    "REGISTER.FULLNAME": "Fullname",
+    "REGISTER.EMAIL": "Email",
+    "REGISTER.PASSWORD": "Password",
+    "REGISTER.REPASSWORD": "Re enter password",
+    "REGISTER.QUESTION": "Already have account?",
+    "REGISTER.SWITCH": "Login"
+}
