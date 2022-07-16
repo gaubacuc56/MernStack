@@ -40,6 +40,8 @@
   font-weight: 600;
   text-decoration: none;
   color: black;
+  font-family: var(--main-font);
+
 }
 
 .item_price {

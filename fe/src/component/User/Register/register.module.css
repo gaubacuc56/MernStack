@@ -2,6 +2,8 @@
     margin: 0;
     font-size: 26px;
     padding-top: 15px;
+    font-family: var(--main-font);
+
 }
 
 .form_element {
@@ -15,6 +17,7 @@
 }
 
 .form_element input {
+    font-family: var(--main-font);
     position: absolute;
     width: 100%;
     height: 40px;
@@ -44,6 +47,7 @@
 }
 
 .btn_area button {
+    font-family: var(--main-font);
     cursor: pointer;
     width: 100%;
     height: 35px;
@@ -62,12 +66,14 @@
 
 
 .optional {
+    font-family: var(--main-font);
     margin-top: 20px;
     text-align: center;
     font-size: 15px;
 }
 
 .optional .direct {
+    font-family: var(--main-font);
     padding-left: 10px;
     cursor: pointer;
     font-weight: 700;
@@ -75,6 +81,7 @@
 }
 
 .error {
+    font-family: var(--main-font);
     color: red;
     font-size: 14px;
 }

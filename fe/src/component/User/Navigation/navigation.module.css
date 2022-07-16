@@ -25,6 +25,7 @@
   border-bottom-style: solid;
   border-bottom-color: white;
   border-bottom-width: 3px;
+
 }
 
 .item:hover {
@@ -35,4 +36,6 @@
   text-decoration: none;
   color: black;
   transition: all linear 0.2s;
+  font-family: var(--main-font);
+
 }
