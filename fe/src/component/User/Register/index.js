@@ -21,28 +21,28 @@ export default function Register(props) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <h2 className={style.title}>{t('REGISTER.TITLE')}</h2>
       <div className={style.form_element}>
-        <i class="fas fa-user"></i>
+        <i className="fas fa-user"></i>
         <input style={errors.name ? { border: '2px solid red' } : null} type="text" name placeholder={t('REGISTER.FULLNAME')}
           {...register("name", { required: true })} />
 
       </div>
       {errors.name && <span className={style.error}>This field is required</span>}
       <div className={style.form_element}>
-        <i class="fas fa-envelope"></i>
+        <i className="fas fa-envelope"></i>
         <input style={errors.email ? { border: '2px solid red' } : null} type="text" placeholder={t('REGISTER.EMAIL')}
           {...register("email", { required: true })} />
       </div>
       {errors.email && <span className={style.error}>This field is required</span>}
 
       <div className={style.form_element}>
-        <i class="fas fa-unlock-alt"></i>
+        <i className="fas fa-unlock-alt"></i>
         <input style={errors.password ? { border: '2px solid red' } : null} type="password" placeholder={t('REGISTER.PASSWORD')}
           {...register("password", { required: true })} />
 
       </div>
       {errors.password && <span className={style.error}>This field is required</span>}
       <div className={style.form_element}>
-        <i class="fas fa-unlock-alt"></i>
+        <i className="fas fa-unlock-alt"></i>
         <input style={errors.repassword ? { border: '2px solid red' } : null} type="password" placeholder={t('REGISTER.REPASSWORD')}
           {...register("repassword", { required: true })} />
       </div>

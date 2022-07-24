@@ -28,7 +28,7 @@ export default function Layout() {
           </>
           :
           <>
-            <Authentication></Authentication>
+            <Authentication modal={openModal} isOpen={modal}></Authentication>
             <Header modal={openModal} isOpen={modal} ></Header>
             <Navigation></Navigation>
             <Slideshow></Slideshow>
