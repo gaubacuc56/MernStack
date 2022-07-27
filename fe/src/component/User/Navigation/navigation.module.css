@@ -6,12 +6,11 @@
 
 .navigation ul {
   height: 50px;
-  max-width: 710px;
-  width: 100%;
+
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding: 0;
+  padding: 0 50px;
 }
 
 .item {
@@ -25,7 +24,6 @@
   border-bottom-style: solid;
   border-bottom-color: white;
   border-bottom-width: 3px;
-
 }
 
 .item:hover {
@@ -37,5 +35,4 @@
   color: black;
   transition: all linear 0.2s;
   font-family: var(--main-font);
-
 }

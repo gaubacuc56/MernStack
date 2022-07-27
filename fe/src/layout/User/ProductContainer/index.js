@@ -7,16 +7,17 @@ import { useTranslation } from "react-i18next";
 import style from "./productContainer.module.css";
 export default function ProductContainer(props) {
   const [product, setProduct] = useState([]);
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   useEffect(() => {
     function random_item(array) {
       return array[Math.floor(Math.random() * array.length)];
     }
 
     const getProduct = async () => {
+      let category = props.category.toLowerCase();
       const result = await axios({
         method: "get",
-        url: `${api_url}/product/getProductByValue/${props.category}`,
+        url: `${api_url}/product/getProductByValue/${category}`,
       });
       let arr = [];
       for (let i = 0; i < 6; i++) {
@@ -35,7 +36,7 @@ export default function ProductContainer(props) {
         <div className={style.left_separate}></div>
         <div className={style.title_content}>
           <h3>{t(`PRO_CONTAINER.TITLE.${props.category}`)}</h3>
-          <p>{t('PRO_CONTAINER.SUBTITLE')}</p>
+          <p>{t("PRO_CONTAINER.SUBTITLE")}</p>
         </div>
         <div className={style.right_separate}></div>
       </div>
@@ -43,7 +44,7 @@ export default function ProductContainer(props) {
         className={`${style.newItem_mainContainer}  row justify-content-center`}
       >
         {product.map((item) => (
-          <div className=" col-lg-4 col-sm-6 col-12">
+          <div className=" col-lg-4 col-sm-6 col-12" key={item._id}>
             <ProductCard
               key={item._id}
               product_name={item.product_name}
@@ -56,7 +57,9 @@ export default function ProductContainer(props) {
       </div>
       <div className={style.btnArea}>
         <Link to={`/Sanpham_display/all`}>
-          <button className={style.showAll_btn}>{t('PRO_CONTAINER.BUTTON')}</button>
+          <button className={style.showAll_btn}>
+            {t("PRO_CONTAINER.BUTTON")}
+          </button>
         </Link>
       </div>
     </div>

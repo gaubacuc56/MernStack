@@ -9,36 +9,38 @@ import Service from "../../component/User/Service";
 import ProductContainer from "./ProductContainer";
 import Authentication from "./Authentication";
 export default function Layout() {
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
   const openModal = (value) => {
-    setModal(value)
-  }
+    setModal(value);
+  };
   return (
     <>
-      {
-        !modal
-          ? <>
-            <Header modal={openModal} ></Header>
-            <Navigation></Navigation>
-            <Slideshow></Slideshow>
-            <Service></Service>
-            <ProductContainer category="TENNIS"></ProductContainer>
-            <Outlet />
-            <Footer></Footer>
-          </>
-          :
-          <>
-            <Authentication modal={openModal} isOpen={modal}></Authentication>
-            <Header modal={openModal} isOpen={modal} ></Header>
-            <Navigation></Navigation>
-            <Slideshow></Slideshow>
-            <Service></Service>
-            <ProductContainer category="TENNIS"></ProductContainer>
-            <Outlet />
-            <Footer></Footer>
-          </>
-      }
-    </>
+      {!modal ? (
+        <>
+          <Header modal={openModal}></Header>
+          <Navigation></Navigation>
+          <Slideshow></Slideshow>
+          <Service></Service>
+          <ProductContainer category="TENNIS"></ProductContainer>
+          <ProductContainer category="SOCCER"></ProductContainer>
 
+          <Outlet />
+          <Footer></Footer>
+        </>
+      ) : (
+        <>
+          <Authentication modal={openModal} isOpen={modal}></Authentication>
+          <Header modal={openModal} isOpen={modal}></Header>
+          <Navigation></Navigation>
+          <Slideshow></Slideshow>
+          <Service></Service>
+          <ProductContainer category="TENNIS"></ProductContainer>
+          <ProductContainer category="SOCCER"></ProductContainer>
+
+          <Outlet />
+          <Footer></Footer>
+        </>
+      )}
+    </>
   );
 }
