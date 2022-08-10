@@ -22,7 +22,6 @@ export default function Layout() {
           <Slideshow></Slideshow>
           <Service></Service>
           <ProductContainer category="TENNIS"></ProductContainer>
-          <ProductContainer category="SOCCER"></ProductContainer>
 
           <Outlet />
           <Footer></Footer>
@@ -35,7 +34,6 @@ export default function Layout() {
           <Slideshow></Slideshow>
           <Service></Service>
           <ProductContainer category="TENNIS"></ProductContainer>
-          <ProductContainer category="SOCCER"></ProductContainer>
 
           <Outlet />
           <Footer></Footer>

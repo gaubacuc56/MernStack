@@ -1,35 +1,28 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import ProductCard from "../../../component/User/ProductCard";
 import { Link } from "react-router-dom";
-import { api_deploy } from "../../../config/config";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+
+import ProductCard from "../../../component/User/ProductCard";
+import { api_deploy } from "../../../config/config";
 import style from "./productContainer.module.css";
 export default function ProductContainer(props) {
   const [product, setProduct] = useState([]);
   const { t } = useTranslation();
-  useEffect(() => {
-    function random_item(array) {
-      return array[Math.floor(Math.random() * array.length)];
-    }
 
+  useEffect(() => {
     const getProduct = async () => {
       let category = props.category.toLowerCase();
       const result = await axios({
         method: "get",
         url: `${api_deploy}/product/getProductByValue/${category}`,
       });
-      let arr = [];
-      for (let i = 0; i < 6; i++) {
-        let item = random_item(result.data);
-        if (!arr.includes(item)) arr.push(item);
-        else;
-      }
-      console.log(arr);
+      let arr = result.data.slice(0, 4);
       setProduct(arr);
     };
     getProduct();
   }, []);
+
   return (
     <div className={`${style.newItem} grid`}>
       <div className={`${style.title_area} `}>
@@ -41,10 +34,10 @@ export default function ProductContainer(props) {
         <div className={style.right_separate}></div>
       </div>
       <div
-        className={`${style.newItem_mainContainer}  row justify-content-center`}
+        className={`${style.newItem_mainContainer}  d-flex justify-content-between  flex-wrap`}
       >
         {product.map((item) => (
-          <div className=" col-lg-4 col-sm-6 col-12" key={item._id}>
+          <div key={item._id}>
             <ProductCard
               key={item._id}
               product_name={item.product_name}
