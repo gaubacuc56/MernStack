@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProductCard from "../../../component/User/ProductCard";
 import { Link } from "react-router-dom";
-import { api_url } from "../../../config/config";
+import { api_deploy } from "../../../config/config";
 import { useTranslation } from "react-i18next";
 import style from "./productContainer.module.css";
 export default function ProductContainer(props) {
@@ -17,7 +17,7 @@ export default function ProductContainer(props) {
       let category = props.category.toLowerCase();
       const result = await axios({
         method: "get",
-        url: `${api_url}/product/getProductByValue/${category}`,
+        url: `${api_deploy}/product/getProductByValue/${category}`,
       });
       let arr = [];
       for (let i = 0; i < 6; i++) {
