@@ -17,7 +17,6 @@ export default function ProductCard(props) {
           </Link>
           <div className={style.item_price}>${props.product_price}</div>
         </div>
-        <i className={`${style.addToCart} fa-solid fa-heart`}></i>
       </div>
     </div>
   );

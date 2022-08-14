@@ -1,13 +1,10 @@
-import React, { useState } from "react";
-
+import React, { useState, Suspense } from "react";
+import { Outlet } from "react-router-dom";
+import SuspenseLoading from "../../component/SuspenseLoading";
 import Header from "../../component/User/Header";
 import Footer from "../../component/User/Footer";
-import Navigation from "../../component/User/Navigation";
-import { Outlet } from "react-router-dom";
-import Slideshow from "../../component/User/Slideshow";
-import Service from "../../component/User/Service";
-import ProductContainer from "./ProductContainer";
 import Authentication from "./Authentication";
+
 export default function Layout() {
   const [modal, setModal] = useState(false);
   const openModal = (value) => {
@@ -18,26 +15,18 @@ export default function Layout() {
       {!modal ? (
         <>
           <Header modal={openModal}></Header>
-          {/*          <Navigation></Navigation>
-          <Slideshow></Slideshow>
-          <Service></Service>
-          <ProductContainer category="TENNIS"></ProductContainer>
-          <ProductContainer category="SOCCER"></ProductContainer> */}
-
-          <Outlet />
+          <Suspense fallback={<SuspenseLoading />}>
+            <Outlet />
+          </Suspense>
           <Footer></Footer>
         </>
       ) : (
         <>
           <Authentication modal={openModal} isOpen={modal}></Authentication>
           <Header modal={openModal} isOpen={modal}></Header>
-          {/*    <Navigation></Navigation>
-          <Slideshow></Slideshow>
-          <Service></Service>
-          <ProductContainer category="TENNIS"></ProductContainer>
-          <ProductContainer category="SOCCER"></ProductContainer> */}
-
-          <Outlet />
+          <Suspense fallback={<SuspenseLoading />}>
+            <Outlet />
+          </Suspense>
           <Footer></Footer>
         </>
       )}

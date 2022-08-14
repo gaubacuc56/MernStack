@@ -1,10 +1,16 @@
 import { lazy } from 'react';
 import Layout from '../layout/User/Layout';
+const HomePage = lazy(() => import('../pages/User/HomePage'));
+
 const routes = [
     {
-        path: '/',
         element: <Layout></Layout>,
-        children: []
+        children: [
+            {
+                path: '/',
+                element: <HomePage></HomePage>,
+            }
+        ]
     }
 ]
 

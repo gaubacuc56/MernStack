@@ -24,6 +24,10 @@ body {
   margin: 0 auto;
 }
 
+.row {
+  margin: 0 !important
+}
+
 @media (min-width: 768px) {
   .grid {
     max-width: 768px;
