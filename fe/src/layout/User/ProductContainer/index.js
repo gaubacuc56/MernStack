@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper";
+import { FreeMode, Autoplay } from "swiper";
 
 import ProductCard from "../../../component/User/ProductCard";
 import { api_deploy } from "../../../config/config";
@@ -12,7 +12,6 @@ import useMediaQuery from "../../../hooks/useMediaQuery";
 import style from "./productContainer.module.css";
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
 export default function ProductContainer(props) {
   const isMobile = useMediaQuery("(max-width:768px)");
 
@@ -50,7 +49,7 @@ export default function ProductContainer(props) {
             ? (
               <>
                 {product.map((item) => (
-                  <div className="col-xl-3 col-sm-6 d-flex justify-content-center " key={item._id}>
+                  <div className={`${style.item_container} col-xl-3 col-sm-6 d-flex justify-content-center`} key={item._id}>
                     <ProductCard
                       key={item._id}
                       product_name={item.product_name}
@@ -63,17 +62,17 @@ export default function ProductContainer(props) {
               </>
 
             )
-            : <div className={`col-12 d-flex justify-content-center`}>
+            : <div className={`${style.item_container} col-12 d-flex justify-content-center`}>
               <Swiper
                 slidesPerView={1}
-                spaceBetween={30}
+                spaceBetween={0}
                 loop={true}
+                freeMode={true}
                 autoplay={{
-                  delay: 2000,
+                  delay: 1500,
                   disableOnInteraction: false,
                 }}
-                navigation={true}
-                modules={[Navigation, Autoplay]}
+                modules={[Autoplay, FreeMode]}
               >
                 {product.map((item) => (
                   <div className="" key={item._id}>
