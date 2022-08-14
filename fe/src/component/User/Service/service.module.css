@@ -17,20 +17,41 @@
 }
 
 .main_container_item i {
-  font-size: 35px;
+  font-size: 25px;
   margin-top: 20px;
 }
 
 .main_container_item h3,
 .main_container_item p {
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.5px;
   margin-top: 10px;
   font-family: var(--main-font);
 }
 
 .main_container_item h3 {
-  font-size: 17px;
+  font-size: 15px;
   font-family: var(--main-font);
   font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .main_container_item i {
+    font-size: 35px;
+    margin-top: 20px;
+  }
+
+  .main_container_item h3,
+  .main_container_item p {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    font-family: var(--main-font);
+  }
+
+  .main_container_item h3 {
+    font-size: 17px;
+    font-family: var(--main-font);
+    font-weight: 600;
+  }
 }
