@@ -6,7 +6,7 @@
   "engines": {
     "node": "12.11.1"
   },
-   "keywords": [
+  "keywords": [
     "example",
     "heroku"
   ],

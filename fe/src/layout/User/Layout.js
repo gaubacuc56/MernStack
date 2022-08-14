@@ -18,11 +18,11 @@ export default function Layout() {
       {!modal ? (
         <>
           <Header modal={openModal}></Header>
-          <Navigation></Navigation>
+          {/*          <Navigation></Navigation>
           <Slideshow></Slideshow>
           <Service></Service>
           <ProductContainer category="TENNIS"></ProductContainer>
-          <ProductContainer category="SOCCER"></ProductContainer>
+          <ProductContainer category="SOCCER"></ProductContainer> */}
 
           <Outlet />
           <Footer></Footer>
@@ -31,11 +31,11 @@ export default function Layout() {
         <>
           <Authentication modal={openModal} isOpen={modal}></Authentication>
           <Header modal={openModal} isOpen={modal}></Header>
-          <Navigation></Navigation>
+          {/*    <Navigation></Navigation>
           <Slideshow></Slideshow>
           <Service></Service>
           <ProductContainer category="TENNIS"></ProductContainer>
-          <ProductContainer category="SOCCER"></ProductContainer>
+          <ProductContainer category="SOCCER"></ProductContainer> */}
 
           <Outlet />
           <Footer></Footer>
