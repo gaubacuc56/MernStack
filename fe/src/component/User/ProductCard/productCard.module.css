@@ -4,10 +4,11 @@
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   width: 250px;
   height: 370px;
-  margin-top: 31px;
   border-radius: 25px;
-
   transition: all linear 0.3s;
+  margin: 0 auto;
+  margin-top: 31px;
+
 }
 
 .item:hover {
