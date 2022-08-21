@@ -51,7 +51,7 @@ export default function ProductContainer(props) {
                 {product.map((item) => (
                   <div className={`${style.item_container} col-xl-3 col-sm-6 d-flex justify-content-center`} key={item._id}>
                     <ProductCard
-                      key={item._id}
+                      id={item._id}
                       product_name={item.product_name}
                       product_price={item.product_price}
                       product_categories={item.product_categories}
@@ -78,7 +78,7 @@ export default function ProductContainer(props) {
                   <div className="" key={item._id}>
                     <SwiperSlide>
                       <ProductCard
-                        key={item._id}
+                        id={item._id}
                         product_name={item.product_name}
                         product_price={item.product_price}
                         product_categories={item.product_categories}

@@ -4,6 +4,8 @@ import SuspenseLoading from "../../component/SuspenseLoading";
 import Header from "../../component/User/Header";
 import Footer from "../../component/User/Footer";
 import Authentication from "./Authentication";
+import Navigation from "../../component/User/Navigation";
+
 
 export default function Layout() {
   const [modal, setModal] = useState(false);
@@ -15,6 +17,7 @@ export default function Layout() {
       {!modal ? (
         <>
           <Header modal={openModal}></Header>
+          <Navigation></Navigation>
           <Suspense fallback={<SuspenseLoading />}>
             <Outlet />
           </Suspense>
@@ -24,6 +27,7 @@ export default function Layout() {
         <>
           <Authentication modal={openModal} isOpen={modal}></Authentication>
           <Header modal={openModal} isOpen={modal}></Header>
+          <Navigation></Navigation>
           <Suspense fallback={<SuspenseLoading />}>
             <Outlet />
           </Suspense>
