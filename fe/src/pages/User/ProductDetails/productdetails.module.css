@@ -8,7 +8,7 @@
 }
 
 .imgArea {
-    width: 65%;
+    width: 63%;
 }
 
 .img_choose {
@@ -34,6 +34,8 @@
     position: sticky;
     top: 80px;
     height: 100%;
+    width: 33%;
+
 }
 
 .operation a {
@@ -60,7 +62,7 @@
 
 .operation .sizeArea span {
     line-height: 35px;
-    font-size: 15px;
+    font-size: 19px;
     font-weight: 500;
 }
 
@@ -76,12 +78,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all linear 0.2s;
+}
+
+.size_options:hover {
+    color: var(--main-color);
+    border-color: var(--main-color);
 }
 
 
-
 .addtoCart {
-    margin-top: 40px;
+    margin-top: 60px;
     width: 100%;
     height: 60px;
     border-radius: 5px;
@@ -120,4 +127,39 @@
     border-radius: 5px;
     top: 4px;
     left: 4px;
+}
+
+.returnPolicy {
+    margin-top: 50px;
+    font-family: var(--main-font);
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: all linear 0.2s;
+}
+
+.returnPolicy:hover {
+    color: white;
+    background-color: black;
+}
+
+.returnPolicy_modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 30px 30px;
+}
+
+.accordion_title {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+
+.accordion_desc {
+    font-size: 18px;
+    color: black;
 }

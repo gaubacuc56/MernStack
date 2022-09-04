@@ -1,11 +1,11 @@
-import { Spinner } from 'reactstrap';
+import { Spinner } from "reactstrap";
 
 const SuspenseLoading = () => {
-    return (
-        <div className="nk-suspense">
-            <Spinner color="primary" />
-        </div>
-    );
+  return (
+    <div className="nk-suspense suspense-center">
+      <Spinner color="primary" />
+    </div>
+  );
 };
 
 export default SuspenseLoading;

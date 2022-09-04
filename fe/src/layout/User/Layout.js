@@ -6,7 +6,6 @@ import Footer from "../../component/User/Footer";
 import Authentication from "./Authentication";
 import Navigation from "../../component/User/Navigation";
 
-
 export default function Layout() {
   const [modal, setModal] = useState(false);
   const openModal = (value) => {

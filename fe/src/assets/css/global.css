@@ -30,6 +30,17 @@ body {
   margin-right: 0 !important;
 }
 
+.suspense-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.MuiAccordion-root {
+  border: 1px solid black;
+}
+
 @media (min-width: 768px) {
   .grid {
     max-width: 768px;
