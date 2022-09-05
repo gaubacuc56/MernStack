@@ -8,11 +8,14 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import { cartActions } from "../../../redux/slices/cart";
+import { useDispatch } from "react-redux";
 import { api_deploy } from "../../../config/config";
 
 import style from "./productdetails.module.css";
 export default function ProductDetails() {
   const { productId } = useParams();
+  const dispatch = useDispatch();
   const [product, setProduct] = useState({});
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
@@ -71,7 +74,10 @@ export default function ProductDetails() {
                   </div>
                 ))}
               </div>
-              <div className={style.addtoCart}>
+              <div
+                onClick={() => dispatch(cartActions.addToCart(product))}
+                className={style.addtoCart}
+              >
                 <div className={style.addtoCart_action}>THÊM VÀO GIỎ</div>
                 <div className={style.cart}>
                   <i class="fa-solid fa-arrow-right-long"></i>
