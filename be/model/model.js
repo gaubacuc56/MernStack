@@ -1,20 +1,36 @@
 const mongoose = require("mongoose");
+const { isEmail } = require("validator");
 
 const productSchema = new mongoose.Schema({
-  product_name: { type: String, require: true },
-  product_price: { type: Number, require: true },
-  product_categories: { type: String, require: true },
-  product_sizes: [{ type: Number, require: true }],
-  product_avatar: { type: String, require: true },
-  detailsImages: [{ type: String, require: true }],
+  product_name: { type: String, required: true },
+  product_price: { type: Number, required: true },
+  product_categories: { type: String, required: true },
+  product_sizes: [{ type: Number, required: true }],
+  product_avatar: { type: String, required: true },
+  detailsImages: [{ type: String, required: true }],
 });
 
 const userSchema = new mongoose.Schema({
-  user_name: { type: String, require: true },
-  user_email: { type: String, require: true },
-  user_phone: { type: String, require: true },
-  user_address: { type: String, require: true },
-  user_role: { type: String, require: true },
+  user_name: { type: String, required: [true, "Please enter your name"] },
+  user_email: {
+    type: String,
+    required: [true, "Please enter your email"],
+    index: { unique: true },
+    lowercase: true,
+    validate: [isEmail, "Please enter a valid email"],
+  },
+  user_phone: {
+    type: String,
+    index: { unique: true },
+    required: [true, "Please enter your phone number"],
+  },
+  user_address: { type: String, required: [true, "Please enter your address"] },
+  user_role: { type: String, required: [true, "Please enter your role"] },
+  user_password: {
+    type: String,
+    required: [true, "Please enter your password"],
+    minLength: [8, "Password must contain at least 8 characters"],
+  },
   user_invoices: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -27,17 +43,17 @@ const invoiceSchema = new mongoose.Schema({
   invoice_userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    require: true,
+    required: true,
   },
   invoice_productId: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Product",
-      require: true,
+      required: true,
     },
   ],
-  invoice_date: { type: String, require: true },
-  invoice_total: { type: Number, require: true },
+  invoice_date: { type: String, required: true },
+  invoice_total: { type: Number, required: true },
 });
 
 let Product = mongoose.model("Product", productSchema);
