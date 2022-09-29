@@ -1,14 +1,6 @@
 const mongoose = require("mongoose");
 const { isEmail } = require("validator");
-
-const productSchema = new mongoose.Schema({
-  product_name: { type: String, required: true },
-  product_price: { type: Number, required: true },
-  product_categories: { type: String, required: true },
-  product_sizes: [{ type: Number, required: true }],
-  product_avatar: { type: String, required: true },
-  detailsImages: [{ type: String, required: true }],
-});
+const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
   user_name: { type: String, required: [true, "Please enter your name"] },
@@ -38,25 +30,27 @@ const userSchema = new mongoose.Schema({
     },
   ],
 });
-
-const invoiceSchema = new mongoose.Schema({
-  invoice_userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  invoice_productId: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
-      required: true,
-    },
-  ],
-  invoice_date: { type: String, required: true },
-  invoice_total: { type: Number, required: true },
+//Hashing user password
+userSchema.pre("save", async function (next) {
+  const salt = await bcrypt.genSalt();
+  this.user_password = await bcrypt.hash(this.user_password, salt);
+  next();
 });
 
-let Product = mongoose.model("Product", productSchema);
+//method for login
+userSchema.statics.login = async function (email_or_phone, password) {
+  const user = await this.findOne({
+    $or: [{ user_email: email_or_phone }, { user_phone: email_or_phone }],
+  });
+  if (user) {
+    const auth = await bcrypt.compare(password, user.user_password);
+    if (auth) {
+      return user;
+    }
+    throw Error("Invalid email/phone or password");
+  }
+  throw Error("Invalid email/phone or password");
+};
+
 let User = mongoose.model("User", userSchema);
-let Invoice = mongoose.model("Invoice", invoiceSchema);
-module.exports = { Product, User, Invoice };
+module.exports = User;
