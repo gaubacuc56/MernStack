@@ -7,5 +7,4 @@ const SuspenseLoading = () => {
     </div>
   );
 };
-
 export default SuspenseLoading;
