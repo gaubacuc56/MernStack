@@ -8,15 +8,21 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 /* Import route */
 const productRoute = require("./routes/product");
+const authRoute = require("./routes/auth");
 
 /* Define Port */
 const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 dotenv.config();
 /* connect database */
 const URL = process.env.MONGODB_URL;
-mongoose.connect(URL, () => {
-  console.log("Database connected");
+
+mongoose.connect(URL, (err) => {
+  if (err) throw err;
+  console.log("Connected to MongoDB");
 });
 
 //Here we are configuring express to use body-parser as middle-ware.
@@ -27,7 +33,4 @@ app.use(morgan("common"));
 
 /* Routes: */
 app.use("/api/product", productRoute);
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.use("/api/auth", authRoute);

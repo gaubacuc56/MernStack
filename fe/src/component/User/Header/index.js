@@ -2,18 +2,19 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./header.module.css";
 import logo from "../../../assets/img/logo.png";
+import { useSelector } from "react-redux";
+import { cartSelectors } from "../../../redux/slices/cart";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import { useTranslation } from "react-i18next";
 export default function Header(props) {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
+  const cart = useSelector(cartSelectors.myCart);
   const [find_value, setFind_value] = useState("");
 
   const isNotMobile = useMediaQuery("(min-width:768px)");
   const handleModal = () => {
-
-    props.modal(!props.isOpen)
-
-  }
+    props.modal(!props.isOpen);
+  };
   return (
     <div>
       <header>
@@ -27,7 +28,7 @@ export default function Header(props) {
                 onChange={(e) => setFind_value(e.target.value)}
                 type="text"
                 className={style.searchBar}
-                placeholder={t('HEADER.FIND')}
+                placeholder={t("HEADER.FIND")}
               />
               <Link /* to={`/Sanpham_display/${find_value}`} */ to="/">
                 <i className="fas fa-search"></i>
@@ -45,7 +46,7 @@ export default function Header(props) {
             <Link to="/Cart">
               <div className={style.cart}>
                 <i id={style.cart_icon} className="fas fa-shopping-cart" />
-                <div className={style.cart_number}>{/* {cart.length} */}1</div>
+                <div className={style.cart_number}>{cart.length}</div>
               </div>
             </Link>
           </div>
@@ -57,12 +58,9 @@ export default function Header(props) {
             ></i>
           ) : (
             ""
-
           )}
         </div>
       </header>
-
     </div>
   );
-
 }
