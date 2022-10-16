@@ -8,16 +8,18 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-import { cartActions } from "../../../redux/slices/cart";
-import { useDispatch } from "react-redux";
+import { cartActions, cartSelectors } from "../../../redux/slices/cart";
+import { useDispatch, useSelector } from "react-redux";
 import { api_deploy } from "../../../config/config";
-
+import Toast from "../../../component/Toast";
 import style from "./productdetails.module.css";
 export default function ProductDetails() {
   const { productId } = useParams();
   const dispatch = useDispatch();
   const [product, setProduct] = useState({});
   const [open, setOpen] = useState(false);
+  const [size, setSize] = useState(null);
+  let currentCart = useSelector(cartSelectors.myCart);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -25,6 +27,19 @@ export default function ProductDetails() {
     setOpen(false);
   };
 
+  const handleAddToCart = () => {
+    if (size === null) Toast("error", "Please choose your size", "top-right");
+    else {
+      let item = { product: product, size: size };
+      let checkError = 0;
+      currentCart.forEach((item) => {
+        if (item._id === product._id && item.size === size) checkError++;
+      });
+      if (checkError > 0)
+        Toast("error", "This product is already in your cart", "top-right");
+      else dispatch(cartActions.addToCart(item));
+    }
+  };
   useEffect(() => {
     const getProduct = async () => {
       const result = await axios({
@@ -69,18 +84,26 @@ export default function ProductDetails() {
               <div className={style.sizeArea}>
                 <span>Kích thước</span>
                 {product.product_sizes.map((sizeItem, key) => (
-                  <div id={key} className={style.size_options}>
+                  <div
+                    id={key}
+                    className={
+                      size === sizeItem
+                        ? style.size_options_selected
+                        : style.size_options
+                    }
+                    onClick={() => setSize(sizeItem)}
+                  >
                     {sizeItem}
                   </div>
                 ))}
               </div>
               <div
-                onClick={() => dispatch(cartActions.addToCart(product))}
+                onClick={() => handleAddToCart()}
                 className={style.addtoCart}
               >
                 <div className={style.addtoCart_action}>THÊM VÀO GIỎ</div>
                 <div className={style.cart}>
-                  <i class="fa-solid fa-arrow-right-long"></i>
+                  <i className="fa-solid fa-arrow-right-long"></i>
                 </div>
                 <div className={style.backdrop}></div>
               </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import style from "./header.module.css";
 import logo from "../../../assets/img/logo.png";
@@ -10,11 +10,20 @@ export default function Header(props) {
   const { t } = useTranslation();
   const cart = useSelector(cartSelectors.myCart);
   const [find_value, setFind_value] = useState("");
+  const [cartNumber, setCartNumber] = useState();
 
   const isNotMobile = useMediaQuery("(min-width:768px)");
   const handleModal = () => {
     props.modal(!props.isOpen);
   };
+
+  useEffect(() => {
+    let total = 0;
+    cart.forEach((item) => {
+      total += item.quantity;
+    });
+    setCartNumber(total);
+  }, [cart]);
   return (
     <div>
       <header>
@@ -46,7 +55,7 @@ export default function Header(props) {
             <Link to="/Cart">
               <div className={style.cart}>
                 <i id={style.cart_icon} className="fas fa-shopping-cart" />
-                <div className={style.cart_number}>{cart.length}</div>
+                <div className={style.cart_number}>{cartNumber}</div>
               </div>
             </Link>
           </div>

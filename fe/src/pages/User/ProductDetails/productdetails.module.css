@@ -1,165 +1,162 @@
 .chiTiet_mainContainer {
-    width: 100%;
-    height: 100%;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
 }
 
 .imgArea {
-    width: 63%;
+  width: 63%;
 }
 
 .img_choose {
-    width: 100%;
+  width: 100%;
 }
 
 .img_choose_item {
-    cursor: pointer;
-    width: 49.9%;
-    margin-top: 2px;
+  cursor: pointer;
+  width: 49.9%;
+  margin-top: 2px;
 }
 
 .img_main {
-    width: 100%;
+  width: 100%;
 }
 
 .img_main img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .operation {
-    position: sticky;
-    top: 80px;
-    height: 100%;
-    width: 33%;
-
+  position: sticky;
+  top: 80px;
+  height: 100%;
+  width: 33%;
 }
 
 .operation a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-
-
 .operation .name {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .operation .price {
-    font-size: 25px;
-    margin-top: 10px;
+  font-size: 25px;
+  margin-top: 10px;
 }
 
-
-
 .operation .sizeArea {
-    margin-top: 30px;
-    display: flex;
+  margin-top: 30px;
+  display: flex;
 }
 
 .operation .sizeArea span {
-    line-height: 35px;
-    font-size: 19px;
-    font-weight: 500;
+  line-height: 35px;
+  font-size: 19px;
+  font-weight: 500;
 }
 
-.size_options {
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-left: 15px;
-    width: 52px;
-    height: 35px;
-    border: 2px solid black;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all linear 0.2s;
+.size_options,
+.size_options_selected {
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 15px;
+  width: 52px;
+  height: 35px;
+  border: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all linear 0.2s;
 }
 
-.size_options:hover {
-    color: var(--main-color);
-    border-color: var(--main-color);
+.size_options:hover,
+.size_options_selected {
+  color: var(--main-color);
+  border-color: var(--main-color);
+  border-width: 3px;
 }
-
 
 .addtoCart {
-    margin-top: 60px;
-    width: 100%;
-    height: 60px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    padding: 0 15px;
-    background-color: black;
-    color: white;
-    font-family: var(--main-font);
-    transition: all linear 0.3s;
-    position: relative;
+  margin-top: 60px;
+  width: 100%;
+  height: 60px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 0 15px;
+  background-color: black;
+  color: white;
+  font-family: var(--main-font);
+  transition: all linear 0.3s;
+  position: relative;
 }
 
 .addtoCart:hover {
-    color: gray;
+  color: gray;
 }
 
 .cart i {
-    font-size: 25px;
-    padding-left: 10px;
+  font-size: 25px;
+  padding-left: 10px;
 }
 
 .addtoCart_action {
-    text-align: center;
-    font-size: 19px;
-    font-weight: 600;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 600;
 }
 
 .backdrop {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border: 2px solid black;
-    border-radius: 5px;
-    top: 4px;
-    left: 4px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border: 2px solid black;
+  border-radius: 5px;
+  top: 4px;
+  left: 4px;
 }
 
 .returnPolicy {
-    margin-top: 50px;
-    font-family: var(--main-font);
-    font-size: 18px;
-    color: black;
-    cursor: pointer;
-    text-decoration: underline;
-    transition: all linear 0.2s;
+  margin-top: 50px;
+  font-family: var(--main-font);
+  font-size: 18px;
+  color: black;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: all linear 0.2s;
 }
 
 .returnPolicy:hover {
-    color: white;
-    background-color: black;
+  color: white;
+  background-color: black;
 }
 
 .returnPolicy_modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 30px 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30px 30px;
 }
 
 .accordion_title {
-    font-size: 20px;
-    font-weight: 600;
-    color: black;
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
 }
 
 .accordion_desc {
-    font-size: 18px;
-    color: black;
+  font-size: 18px;
+  color: black;
 }
