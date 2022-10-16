@@ -28,7 +28,7 @@ export default function ProductDetails() {
   };
 
   const handleAddToCart = () => {
-    if (size === null) Toast("error", "Please choose your size", "top-right");
+    if (size === null) Toast("error", "Vui lòng chọn size giày", "top-right");
     else {
       let item = { product: product, size: size };
       let checkError = 0;
@@ -36,8 +36,11 @@ export default function ProductDetails() {
         if (item._id === product._id && item.size === size) checkError++;
       });
       if (checkError > 0)
-        Toast("error", "This product is already in your cart", "top-right");
-      else dispatch(cartActions.addToCart(item));
+        Toast("error", "Sản phẩm này đã tồn tại trong giỏ hàng", "top-right");
+      else {
+        dispatch(cartActions.addToCart(item));
+        Toast("success", "Thêm sản phẩm vào giỏ hàng thành công", "top-right");
+      }
     }
   };
   useEffect(() => {
