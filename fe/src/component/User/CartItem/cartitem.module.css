@@ -43,7 +43,7 @@
 .separate {
   width: 300px;
   height: 2px;
-  background-color: var(--main-color);
+  background-color: black;
 }
 .price {
   color: var(--main-color);
