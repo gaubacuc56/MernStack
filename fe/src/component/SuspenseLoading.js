@@ -1,9 +1,16 @@
-import { Spinner } from "reactstrap";
-
+import { CircularProgress } from "@mui/material";
+import Spinner from "react-bootstrap/Spinner";
 const SuspenseLoading = () => {
   return (
-    <div className="nk-suspense suspense-center">
-      <h3>Rossy Store</h3>
+    <div
+      style={{
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "100px",
+      }}
+    >
+      <Spinner animation="border" role="status"></Spinner>
     </div>
   );
 };
