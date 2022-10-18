@@ -1,4 +1,4 @@
-const { Product } = require("../model/model");
+const Product = require("../model/product");
 const productControllers = {
   // Add:
   addProduct: async (req, res) => {
@@ -31,10 +31,10 @@ const productControllers = {
   getProductByValue: async (req, res) => {
     try {
       const product = await Product.find({
-        "$or": [
+        $or: [
           { product_name: { $regex: req.params.value } },
-          { product_categories: { $regex: req.params.value } }
-        ]
+          { product_categories: { $regex: req.params.value } },
+        ],
       });
       /* <=> SELECT * FROM Product where Product.id = <id trả về> */
       res.status(200).json(product);
