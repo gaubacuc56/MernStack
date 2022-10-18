@@ -1,6 +1,7 @@
 {
     "REGISTER.TITLE": "Đăng ký",
     "REGISTER.FULLNAME": "Họ và tên",
+    "REGISTER.PHONE": "Số điện thoại",
     "REGISTER.EMAIL": "Email",
     "REGISTER.PASSWORD": "Mật khẩu",
     "REGISTER.REPASSWORD": "Nhập lại mật khẩu",

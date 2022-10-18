@@ -12,7 +12,13 @@ const initialState = {
   errorMessage: "init",
 };
 export const login = createAsyncThunk("login/login", async (data) => {
-  const response = await axios.post("", { ...data });
+  let user = {
+    user_info: data.name,
+    user_password: data.password,
+  };
+  const response = await axios.post("http://localhost:5000/api/auth/login", {
+    ...user,
+  });
   return response.data;
 });
 const userSlice = createSlice({
@@ -29,9 +35,10 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(login.rejected, (state, _action) => {
-      state.errorMessage = "error";
+      state.errorMessage = "Invalid email/phone or password";
     });
     builder.addCase(login.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.user = action.payload;
       state.errorMessage = "";
     });

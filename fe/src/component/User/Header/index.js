@@ -6,16 +6,13 @@ import { useSelector } from "react-redux";
 import { cartSelectors } from "../../../redux/slices/cart";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import { useTranslation } from "react-i18next";
-export default function Header(props) {
+export default function Header() {
   const { t } = useTranslation();
   const cart = useSelector(cartSelectors.myCart);
   const [find_value, setFind_value] = useState("");
   const [cartNumber, setCartNumber] = useState();
 
   const isNotMobile = useMediaQuery("(min-width:768px)");
-  const handleModal = () => {
-    props.modal(!props.isOpen);
-  };
 
   useEffect(() => {
     let total = 0;
@@ -48,9 +45,9 @@ export default function Header(props) {
           )}
 
           <div className={style.operation}>
-            <div onClick={handleModal} className={style.account}>
+            <Link to="/login" className={style.account}>
               <i className="far fa-user" />
-            </div>
+            </Link>
 
             <Link to="/Cart">
               <div className={style.cart}>

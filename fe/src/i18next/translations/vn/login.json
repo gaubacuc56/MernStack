@@ -1,6 +1,6 @@
 {
     "LOGIN.TITLE": "Đăng Nhập",
-    "LOGIN.EMAIL": "Email",
+    "LOGIN.EMAIL": "Email hoặc Số điện thoại",
     "LOGIN.PASSWORD": "Mật khẩu",
     "LOGIN.QUESTION": "Bạn chưa có tài khoản ?",
     "LOGIN.SWITCH": "Đăng ký"

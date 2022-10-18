@@ -1,6 +1,8 @@
 {
     "REGISTER.TITLE": "Register",
     "REGISTER.FULLNAME": "Fullname",
+    "REGISTER.PHONE": "Phone number",
+
     "REGISTER.EMAIL": "Email",
     "REGISTER.PASSWORD": "Password",
     "REGISTER.REPASSWORD": "Re enter password",

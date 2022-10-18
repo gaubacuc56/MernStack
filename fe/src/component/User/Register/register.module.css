@@ -1,87 +1,93 @@
-.title {
-    margin: 0;
-    font-size: 26px;
-    padding-top: 15px;
-    font-family: var(--main-font);
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.registerForm {
+  margin-top: 50px;
+  width: 40%;
+}
 
+.title {
+  margin: 0;
+  font-size: 26px;
+  font-family: var(--main-font);
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .form_element {
-
-    height: 40px;
-    margin: 0 auto;
-    margin-top: 25px;
-    position: relative;
-    background-color: #eee;
-    border-radius: 10px;
+  height: 45px;
+  margin: 0 auto;
+  margin-top: 25px;
+  position: relative;
+  background-color: #eee;
+  border-radius: 10px;
 }
 
 .form_element input {
-    font-family: var(--main-font);
-    position: absolute;
-    width: 100%;
-    height: 40px;
-    background-color: #eee;
-    border: none;
-    outline: none;
-    padding-left: 45px;
-    border-radius: 10px;
-    font-size: 14px;
+  font-family: var(--main-font);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+  border: none;
+  outline: none;
+  padding-left: 45px;
+  border-radius: 10px;
+  font-size: 14px;
 }
 
 .form_element i {
-    position: absolute;
-    z-index: 5;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+  position: absolute;
+  z-index: 5;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-
 .btn_area {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: 35px;
-
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 35px;
 }
 
 .btn_area button {
-    font-family: var(--main-font);
-    cursor: pointer;
-    width: 100%;
-    height: 35px;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: 600;
-    font-size: 15px;
-    background-color: var(--main-color);
+  font-family: var(--main-font);
+  cursor: pointer;
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: var(--main-color);
 }
 
 .btn_area button:active {
-    background-color: #1fbbd3
+  background-color: #1fbbd3;
 }
 
-
 .optional {
-    font-family: var(--main-font);
-    margin-top: 20px;
-    text-align: center;
-    font-size: 15px;
+  font-family: var(--main-font);
+  margin-top: 20px;
+  text-align: center;
+  font-size: 15px;
 }
 
 .optional .direct {
-    font-family: var(--main-font);
-    padding-left: 10px;
-    cursor: pointer;
-    font-weight: 700;
-    color: var(--main-color);
+  font-family: var(--main-font);
+  padding-left: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--main-color);
 }
 
 .error {
-    font-family: var(--main-font);
-    color: red;
-    font-size: 14px;
+  font-family: var(--main-font);
+  color: red;
+  font-size: 14px;
 }

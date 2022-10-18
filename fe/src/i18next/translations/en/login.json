@@ -1,6 +1,6 @@
 {
     "LOGIN.TITLE": "Login",
-    "LOGIN.EMAIL": "Email",
+    "LOGIN.EMAIL": "Email or Phone number",
     "LOGIN.PASSWORD": "Password",
     "LOGIN.QUESTION": "Didn't have account ?",
     "LOGIN.SWITCH": "Register"
