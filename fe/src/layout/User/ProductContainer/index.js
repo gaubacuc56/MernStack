@@ -9,6 +9,8 @@ import { FreeMode, Autoplay } from "swiper";
 import ProductCard from "../../../component/User/ProductCard";
 import { api_deploy } from "../../../config/config";
 import useMediaQuery from "../../../hooks/useMediaQuery";
+import Spinner from "react-bootstrap/Spinner";
+
 import style from "./productContainer.module.css";
 // Import Swiper styles
 import "swiper/css";
@@ -44,12 +46,21 @@ export default function ProductContainer(props) {
       <div
         className={`${style.newItem_mainContainer}  row justify-content-between `}
       >
-        {
-          !isMobile
-            ? (
+        {product?.length === 0 ? (
+          <div
+            className={`${style.item_container} col-12 d-flex justify-content-center mt-4`}
+          >
+            <Spinner size="lg" animation="border" role="status"></Spinner>
+          </div>
+        ) : (
+          <>
+            {!isMobile ? (
               <>
                 {product.map((item) => (
-                  <div className={`${style.item_container} col-xl-3 col-sm-6 d-flex justify-content-center`} key={item._id}>
+                  <div
+                    className={`${style.item_container} col-xl-3 col-sm-6 d-flex justify-content-center`}
+                    key={item._id}
+                  >
                     <ProductCard
                       id={item._id}
                       product_name={item.product_name}
@@ -60,43 +71,44 @@ export default function ProductContainer(props) {
                   </div>
                 ))}
               </>
-
-            )
-            : <div className={`${style.item_container} col-12 d-flex justify-content-center`}>
-              <Swiper
-                slidesPerView={1}
-                spaceBetween={0}
-                loop={true}
-                freeMode={true}
-                autoplay={{
-                  delay: 1500,
-                  disableOnInteraction: false,
-                }}
-                modules={[Autoplay, FreeMode]}
+            ) : (
+              <div
+                className={`${style.item_container} col-12 d-flex justify-content-center`}
               >
-                {product.map((item) => (
-                  <div className="" key={item._id}>
-                    <SwiperSlide>
-                      <ProductCard
-                        id={item._id}
-                        product_name={item.product_name}
-                        product_price={item.product_price}
-                        product_categories={item.product_categories}
-                        product_avatar={item.product_avatar}
-                      ></ProductCard>
-                    </SwiperSlide>
-
-                  </div>
-                ))}
-
-              </Swiper>
-            </div>
-        }
+                <Swiper
+                  slidesPerView={1}
+                  spaceBetween={0}
+                  loop={true}
+                  freeMode={true}
+                  autoplay={{
+                    delay: 1500,
+                    disableOnInteraction: false,
+                  }}
+                  modules={[Autoplay, FreeMode]}
+                >
+                  {product.map((item) => (
+                    <div className="" key={item._id}>
+                      <SwiperSlide>
+                        <ProductCard
+                          id={item._id}
+                          product_name={item.product_name}
+                          product_price={item.product_price}
+                          product_categories={item.product_categories}
+                          product_avatar={item.product_avatar}
+                        ></ProductCard>
+                      </SwiperSlide>
+                    </div>
+                  ))}
+                </Swiper>
+              </div>
+            )}
+          </>
+        )}
       </div>
 
       <div className={style.btnArea}>
         <Link to={`/Sanpham_display/all`}>
-          <button className={style.showAll_btn}>
+          <button disabled={product.length == 0} className={style.showAll_btn}>
             {t("PRO_CONTAINER.BUTTON")}
           </button>
         </Link>
