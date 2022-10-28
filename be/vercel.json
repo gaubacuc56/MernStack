@@ -2,5 +2,5 @@
   "version": 2,
   "name": "rossy-api",
   "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/be/(.*)", "dest": "/be/server.js" }]
+  "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
 }
