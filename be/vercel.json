@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "rossy-store",
+  "name": "rossy-api",
   "builds": [{ "src": "server.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/vercel.js" }]
+  "routes": [{ "src": "/(.*)", "dest": "/server.js" }]
 }
