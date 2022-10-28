@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import Spinner from "react-bootstrap/Spinner";
+
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -96,7 +97,7 @@ export default function Register(props) {
         <div className={style.btn_area}>
           <button type="submit">
             {loading ? (
-              <ClipLoader color="#ffffff" loading={loading} size={23} />
+              <Spinner size="sm" animation="border" role="status"></Spinner>
             ) : (
               t("REGISTER.TITLE")
             )}

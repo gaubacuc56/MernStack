@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import Spinner from "react-bootstrap/Spinner";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Alert } from "@mui/material";
+import { userActions } from "../../../redux/slices/auth/login";
 import { GoogleLogin } from "react-google-login";
 import { REACT_APP_GOOGLE_CLIENT_ID } from "../../../config/config";
 import { login, loginSelectors } from "../../../redux/slices/auth/login";
-import logo from "../../../assets/img/logo.png";
 import style from "./login.module.css";
 
 export default function Login(props) {
@@ -23,10 +24,11 @@ export default function Login(props) {
   const { t } = useTranslation();
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1300);
-  }, [loading]);
+    dispatch(userActions.setDefaultError());
+  }, []);
+  useEffect(() => {
+    loginError?.length > 0 && loginError !== "init" && setLoading(false);
+  }, [loginError]);
   const onSubmit = (data) => {
     setLoading(true);
     dispatch(login(data));
@@ -41,7 +43,7 @@ export default function Login(props) {
     <div className={style.login}>
       <form className={style.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <h2 className={style.title}>{t("LOGIN.TITLE")}</h2>
-        <div className={style.login_name}>
+        <div className={style.form_element}>
           <i className="fas fa-user"></i>
           <input
             style={errors.name ? { border: "2px solid red" } : null}
@@ -55,7 +57,7 @@ export default function Login(props) {
         {errors.name && (
           <span className={style.error}>This field is required</span>
         )}
-        <div className={style.login_password}>
+        <div className={style.form_element}>
           <i className="fas fa-unlock-alt"></i>
           <input
             style={errors.password ? { border: "2px solid red" } : null}
@@ -70,12 +72,14 @@ export default function Login(props) {
           <span className={style.error}>This field is required</span>
         )}
         {loginError?.length > 0 && loginError !== "init" && (
-          <p className={style.error}>{loginError}</p>
+          <Alert severity="error" className={style.errorAlert}>
+            {loginError}
+          </Alert>
         )}
         <div className={style.btn_area}>
           <button type="submit">
             {loading ? (
-              <ClipLoader color="#ffffff" loading={loading} size={23} />
+              <Spinner size="sm" animation="border" role="status"></Spinner>
             ) : (
               t("LOGIN.TITLE")
             )}
