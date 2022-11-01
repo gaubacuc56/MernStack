@@ -108,6 +108,7 @@ export default function Register(props) {
               maxLength: 32,
             })}
           />
+          <i className={`${style.viewPassword} fas fa-eye`}></i>
         </div>
         {(errors?.password?.type == "required" && (
           <span className={style.error}>Vui lòng nhập thông tin</span>
@@ -119,7 +120,11 @@ export default function Register(props) {
         <div className={style.form_element}>
           <i className="fas fa-unlock-alt"></i>
           <input
-            style={errors.repassword ? { border: "2px solid red" } : null}
+            style={
+              errors.repassword || !isPasswordMatched
+                ? { border: "2px solid red" }
+                : null
+            }
             type="password"
             placeholder={t("REGISTER.REPASSWORD")}
             {...register("repassword", { required: true })}

@@ -44,7 +44,13 @@
   top: 50%;
   transform: translateY(-50%);
 }
-
+.form_element .viewPassword {
+  position: absolute;
+  z-index: 5;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 .btn_area {
   display: flex;
   justify-content: center;
