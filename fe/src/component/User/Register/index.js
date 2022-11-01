@@ -19,6 +19,7 @@ export default function Register(props) {
   const registerError = useSelector(registerSelectors.responses);
   const [loading, setLoading] = useState(false);
   const [isPasswordMatched, setIsPasswordMatched] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -98,9 +99,14 @@ export default function Register(props) {
 
         <div className={style.form_element}>
           <i className="fas fa-unlock-alt"></i>
+          <i
+            onClick={() => setShowPassword(!showPassword)}
+            className={`${style.viewPassword} fas fa-eye`}
+          ></i>
+
           <input
             style={errors.password ? { border: "2px solid red" } : null}
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder={t("REGISTER.PASSWORD")}
             {...register("password", {
               required: true,
@@ -108,7 +114,6 @@ export default function Register(props) {
               maxLength: 32,
             })}
           />
-          <i className={`${style.viewPassword} fas fa-eye`}></i>
         </div>
         {(errors?.password?.type == "required" && (
           <span className={style.error}>Vui lòng nhập thông tin</span>
