@@ -3,7 +3,7 @@ import {
   createSlice,
   createAsyncThunk,
 } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../../utils/axiosInstance";
 
 const name = "login";
 const initialState = {
@@ -16,7 +16,7 @@ export const login = createAsyncThunk("login/login", async (data) => {
     user_info: data.name,
     user_password: data.password,
   };
-  const response = await axios.post("http://localhost:5000/api/auth/login", {
+  const response = await axios.post("auth/login", {
     ...user,
   });
   return response.data;

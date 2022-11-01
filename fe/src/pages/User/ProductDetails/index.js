@@ -10,7 +10,7 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { cartActions, cartSelectors } from "../../../redux/slices/cart";
 import { useDispatch, useSelector } from "react-redux";
-import { api_deploy } from "../../../config/config";
+import { api_deploy } from "../../../utils/config";
 import Toast from "../../../component/Toast";
 import style from "./productdetails.module.css";
 export default function ProductDetails() {

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Alert } from "@mui/material";
 import { userActions } from "../../../redux/slices/auth/login";
 import { GoogleLogin } from "react-google-login";
-import { REACT_APP_GOOGLE_CLIENT_ID } from "../../../config/config";
+import { REACT_APP_GOOGLE_CLIENT_ID } from "../../../utils/config";
 import { login, loginSelectors } from "../../../redux/slices/auth/login";
 import style from "./login.module.css";
 
@@ -27,7 +27,8 @@ export default function Login(props) {
     dispatch(userActions.setDefaultError());
   }, []);
   useEffect(() => {
-    loginError?.length > 0 && loginError !== "init" && setLoading(false);
+    if ((loginError?.length > 0 && loginError !== "init") || loginError === "")
+      setLoading(false);
   }, [loginError]);
   const onSubmit = (data) => {
     setLoading(true);
@@ -72,7 +73,7 @@ export default function Login(props) {
           <span className={style.error}>This field is required</span>
         )}
         {loginError?.length > 0 && loginError !== "init" && (
-          <Alert severity="error" className={style.errorAlert}>
+          <Alert sx={{ marginTop: "20px" }} severity="error">
             {loginError}
           </Alert>
         )}

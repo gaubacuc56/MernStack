@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react";
-import Spinner from "react-bootstrap/Spinner";
-
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  RegisterThunk,
+  registerSelectors,
+  registerActions,
+} from "../../../redux/slices/auth/register";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { Alert } from "@mui/material";
+
+import Spinner from "react-bootstrap/Spinner";
+
 import style from "./register.module.css";
 export default function Register(props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const registerError = useSelector(registerSelectors.responses);
   const [loading, setLoading] = useState(false);
+  const [isPasswordMatched, setIsPasswordMatched] = useState(true);
   const {
     register,
     handleSubmit,
@@ -14,15 +26,24 @@ export default function Register(props) {
   } = useForm();
   const { t } = useTranslation();
   useEffect(() => {
-    setTimeout(() => {
+    dispatch(registerActions.resetResponse());
+  }, []);
+  useEffect(() => {
+    if (registerError === "") {
+      dispatch(registerActions.resetResponse());
+      navigate("/login");
       setLoading(false);
-    }, 2000);
-  }, [loading]);
+    } else if (registerError?.length > 0 && registerError !== "init")
+      setLoading(false);
+  }, [registerError]);
   const onSubmit = (data) => {
-    setLoading(true);
-    console.log(data);
+    if (data.password !== data.repassword) setIsPasswordMatched(false);
+    else {
+      setIsPasswordMatched(true);
+      setLoading(true);
+      dispatch(RegisterThunk(data));
+    }
   };
-
   return (
     <div className={style.register}>
       <form className={style.registerForm} onSubmit={handleSubmit(onSubmit)}>
@@ -39,7 +60,7 @@ export default function Register(props) {
         </div>
 
         {errors.name && (
-          <span className={style.error}>This field is required</span>
+          <span className={style.error}>Vui lòng nhập thông tin</span>
         )}
 
         <div className={style.form_element}>
@@ -53,7 +74,7 @@ export default function Register(props) {
         </div>
 
         {errors.phone && (
-          <span className={style.error}>This field is required</span>
+          <span className={style.error}>Vui lòng nhập thông tin</span>
         )}
 
         <div className={style.form_element}>
@@ -62,12 +83,18 @@ export default function Register(props) {
             style={errors.email ? { border: "2px solid red" } : null}
             type="text"
             placeholder={t("REGISTER.EMAIL")}
-            {...register("email", { required: true })}
+            {...register("email", {
+              required: true,
+              pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+            })}
           />
         </div>
-        {errors.email && (
-          <span className={style.error}>This field is required</span>
-        )}
+        {(errors?.email?.type == "required" && (
+          <span className={style.error}>Vui lòng nhập thông tin</span>
+        )) ||
+          (errors?.email?.type == "pattern" && (
+            <span className={style.error}>Email không hợp lệ</span>
+          ))}
 
         <div className={style.form_element}>
           <i className="fas fa-unlock-alt"></i>
@@ -75,12 +102,20 @@ export default function Register(props) {
             style={errors.password ? { border: "2px solid red" } : null}
             type="password"
             placeholder={t("REGISTER.PASSWORD")}
-            {...register("password", { required: true })}
+            {...register("password", {
+              required: true,
+              minLength: 8,
+              maxLength: 32,
+            })}
           />
         </div>
-        {errors.password && (
-          <span className={style.error}>This field is required</span>
-        )}
+        {(errors?.password?.type == "required" && (
+          <span className={style.error}>Vui lòng nhập thông tin</span>
+        )) ||
+          ((errors?.password?.type === "minLength" ||
+            errors?.password?.type === "maxLength") && (
+            <span className={style.error}>Độ dài mật khẩu từ 8-32 ký tự</span>
+          ))}
         <div className={style.form_element}>
           <i className="fas fa-unlock-alt"></i>
           <input
@@ -91,7 +126,17 @@ export default function Register(props) {
           />
         </div>
         {errors.repassword && (
-          <span className={style.error}>This field is required</span>
+          <span className={style.error}>Vui lòng nhập thông tin</span>
+        )}
+
+        {!isPasswordMatched && !errors.repassword && (
+          <span className={style.error}>Mật khẩu không khớp</span>
+        )}
+
+        {registerError?.length > 0 && registerError !== "init" && (
+          <Alert sx={{ marginTop: "20px" }} severity="error">
+            {registerError}
+          </Alert>
         )}
 
         <div className={style.btn_area}>

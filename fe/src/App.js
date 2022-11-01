@@ -3,7 +3,7 @@ import { useRoutes } from "react-router-dom";
 import "./i18next";
 import { routes } from "./routes";
 import { gapi } from "gapi-script";
-import { REACT_APP_GOOGLE_CLIENT_ID } from "./config/config";
+import { REACT_APP_GOOGLE_CLIENT_ID } from "./utils/config";
 import { ToastContainer } from "react-toastify";
 
 function App() {

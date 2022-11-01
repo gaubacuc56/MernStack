@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Autoplay } from "swiper";
 
 import ProductCard from "../../../component/User/ProductCard";
-import { api_deploy } from "../../../config/config";
+import { api_deploy } from "../../../utils/config";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import Spinner from "react-bootstrap/Spinner";
 
