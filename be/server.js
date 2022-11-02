@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
 /* Import route */
 const productRoute = require("./routes/product");
 const authRoute = require("./routes/auth");
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("common"));
+app.use(cookieParser());
 
 /* Routes: */
 app.use("/api/product", productRoute);

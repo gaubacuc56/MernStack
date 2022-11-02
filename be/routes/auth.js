@@ -1,10 +1,17 @@
-const authControllers = require("../controllers/authControllers");
+const {
+  Register,
+  Login,
+  getAllUser,
+  getUser,
+} = require("../controllers/authControllers");
+const { checkCurrentUser } = require("../middlewares/checkCurrentUser");
 const express = require("express");
 const router = express.Router();
 
-router.post("/register", authControllers.Register);
-router.post("/login", authControllers.Login);
-router.get("/getUser/:id", authControllers.getUser);
-router.get("/getAllUser", authControllers.getAllUser);
+router.post("/register", Register);
+router.post("/login", Login);
+router.get("/getAllUser", getAllUser);
+router.get("/", checkCurrentUser, getUser);
+// router.route("/").get(checkCurrentUser, getUser);
 
 module.exports = router;

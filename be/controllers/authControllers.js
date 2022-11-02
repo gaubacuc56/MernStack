@@ -54,21 +54,25 @@ const authControllers = {
       res.status(400).json(errors);
     }
   },
-  getUser: async (req, res) => {
-    try {
-      const user = await User.findById(req.params.id);
-      /* <=> SELECT * FROM User where User.id = <id trả về> */
-      res.status(200).json(user);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  },
+
   getAllUser: async (req, res) => {
     try {
       const users = await User.find(); /* <=> SELECT * FROM User */
       res.status(200).json(users);
     } catch (error) {
       res.status(500).json(error);
+    }
+  },
+  getUser: async (req, res, next) => {
+    try {
+      const data = { user: null };
+      if (req.user) {
+        const user = await User.findOne({ _id: req.user.userId._id });
+        data.user = user;
+      }
+      res.status(200).json(data);
+    } catch (error) {
+      res.json(error);
     }
   },
 };
