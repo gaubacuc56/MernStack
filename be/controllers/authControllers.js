@@ -78,7 +78,11 @@ const authControllers = {
       const token = createToken(userExist._id);
       return res
         .cookie("token", token)
-        .json({ success: true, message: "Login Successfully" });
+        .json({
+          success: true,
+          message: "Login Successfully",
+          userToken: token,
+        });
     } catch (error) {
       let errors = handleError(error);
       res.status(400).json(errors);
