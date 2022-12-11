@@ -1,20 +1,17 @@
 const jwt = require("jsonwebtoken");
+const User = require("../model/user");
 
-const checkCurrentUser = (req, res, next) => {
-  const Authorization = req.header("authorization");
-  if (!Authorization) {
-    req.user = null;
-    next();
-  } else {
-    const token = Authorization.replace("Bearer ", "");
-    try {
-      const { userId } = jwt.verify(token, "User secret token");
-      req.user = { userId };
-      next();
-    } catch (err) {
-      req.user = null;
-      next();
+const isAuthenticated = async (req, res, next) => {
+  try {
+    const { token } = req.cookies;
+    if (!token) {
+      return next("Please login to access the data");
     }
+    const verify = await jwt.verify(token, process.env.TOKEN);
+    req.user = await User.findById(verify.id);
+    next();
+  } catch (error) {
+    return next(error);
   }
 };
-module.exports = { checkCurrentUser };
+module.exports = { isAuthenticated };

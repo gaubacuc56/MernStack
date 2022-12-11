@@ -4,14 +4,14 @@ const {
   getAllUser,
   getUser,
 } = require("../controllers/authControllers");
-const { checkCurrentUser } = require("../middlewares/checkCurrentUser");
+const { isAuthenticated } = require("../middlewares/checkCurrentUser");
+
 const express = require("express");
 const router = express.Router();
 
 router.post("/register", Register);
 router.post("/login", Login);
-router.get("/getAllUser", getAllUser);
-router.get("/", checkCurrentUser, getUser);
-// router.route("/").get(checkCurrentUser, getUser);
+router.get("/getAllUser", isAuthenticated, getAllUser);
+router.get("/getUser", isAuthenticated, getUser);
 
 module.exports = router;

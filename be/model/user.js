@@ -29,6 +29,9 @@ const userSchema = new mongoose.Schema({
       ref: "Invoice",
     },
   ],
+  token: {
+    type: String,
+  },
 });
 //Hashing user password
 userSchema.pre("save", async function (next) {
@@ -36,21 +39,6 @@ userSchema.pre("save", async function (next) {
   this.user_password = await bcrypt.hash(this.user_password, salt);
   next();
 });
-
-//method for login
-userSchema.statics.login = async function (email_or_phone, password) {
-  const user = await this.findOne({
-    $or: [{ user_email: email_or_phone }, { user_phone: email_or_phone }],
-  });
-  if (user) {
-    const auth = await bcrypt.compare(password, user.user_password);
-    if (auth) {
-      return user;
-    }
-    throw Error("Invalid email/phone or password");
-  }
-  throw Error("Invalid email/phone or password");
-};
 
 let User = mongoose.model("User", userSchema);
 module.exports = User;

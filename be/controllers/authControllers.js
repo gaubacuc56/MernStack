@@ -1,5 +1,7 @@
 const User = require("../model/user");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
 const handleError = (err) => {
   let errors = {};
   console.log(String(err));
@@ -27,7 +29,7 @@ const handleError = (err) => {
 
 const maxAge = 3 * 24 * 60 * 60; // 3 days
 const createToken = (id) => {
-  return jwt.sign({ id }, "User secret token", {
+  return jwt.sign({ id }, process.env.TOKEN, {
     expiresIn: maxAge,
   });
 };
@@ -35,20 +37,48 @@ const createToken = (id) => {
 const authControllers = {
   Register: async (req, res) => {
     try {
-      const newUser = await User.create(req.body);
-      res.status(201).json(newUser);
+      const newUser = new User(req.body);
+      await newUser.save();
+      const token = createToken(newUser._id);
+      return res.cookie("", token).json({
+        success: true,
+        message: "User registered successfully",
+        data: newUser,
+      });
     } catch (error) {
       let errors = handleError(error);
       res.status(400).json(errors);
     }
   },
   Login: async (req, res) => {
-    const { user_info, user_password } = req.body;
     try {
-      const user = await User.login(user_info, user_password);
-      const token = createToken(user._id);
-      res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-      res.status(200).json({ user_id: user._id, user_token: token });
+      const { user_info, user_password } = req.body;
+      if (!user_info || !user_password) {
+        return res.json({ message: "Please enter all the details" });
+      }
+
+      /* Check if user is existed */
+      const userExist = await User.findOne({
+        $or: [{ user_email: user_info }, { user_phone: user_info }],
+      });
+
+      if (!userExist) {
+        return res.json({ message: "Invalid email/phone or password" });
+      }
+
+      /* Check if the password is matched*/
+      const isPasswordMatched = await bcrypt.compare(
+        user_password,
+        userExist.user_password
+      );
+      if (!isPasswordMatched) {
+        return res.json({ message: "Invalid email/phone or password" });
+      }
+
+      const token = createToken(userExist._id);
+      return res
+        .cookie("token", token)
+        .json({ success: true, message: "Login Successfully" });
     } catch (error) {
       let errors = handleError(error);
       res.status(400).json(errors);
@@ -65,12 +95,7 @@ const authControllers = {
   },
   getUser: async (req, res, next) => {
     try {
-      const data = { user: null };
-      if (req.user) {
-        const user = await User.findOne({ _id: req.user.userId._id });
-        data.user = user;
-      }
-      res.status(200).json(data);
+      res.status(200).json(req.user);
     } catch (error) {
       res.json(error);
     }
