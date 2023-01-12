@@ -16,10 +16,17 @@ export const login = createAsyncThunk("login/login", async (data) => {
     user_info: data.name,
     user_password: data.password,
   };
-  const response = await axios.post("auth/login", {
+
+  const tokenResponse = await axios.post("auth/login", {
     ...user,
   });
-  return response.data;
+
+  const userData = await axios.get("auth/getUser", {
+    headers: {
+      Authorization: `Bearer ${tokenResponse.data.userToken}`,
+    },
+  });
+  return userData.data;
 });
 const userSlice = createSlice({
   name,
@@ -38,7 +45,6 @@ const userSlice = createSlice({
       state.errorMessage = "Invalid email/phone or password";
     });
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.user = action.payload;
       state.errorMessage = "";
     });
@@ -52,5 +58,5 @@ const userToken = createSelector(selector, ({ token }) => token);
 export const loginSelectors = { account, error, userToken };
 
 const { logout, setDefaultError } = userSlice.actions;
-export const userActions = { logout, setDefaultError };
+export const loginActions = { logout, setDefaultError };
 export default userSlice.reducer;

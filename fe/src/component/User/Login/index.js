@@ -5,10 +5,13 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Alert } from "@mui/material";
-import { userActions } from "../../../redux/slices/auth/login";
 import { GoogleLogin } from "react-google-login";
 import { REACT_APP_GOOGLE_CLIENT_ID } from "../../../utils/config";
-import { login, loginSelectors } from "../../../redux/slices/auth/login";
+import {
+  login,
+  loginSelectors,
+  loginActions,
+} from "../../../redux/slices/auth/login";
 import style from "./login.module.css";
 
 export default function Login(props) {
@@ -20,16 +23,15 @@ export default function Login(props) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const { t } = useTranslation();
 
   useEffect(() => {
-    dispatch(userActions.setDefaultError());
+    dispatch(loginActions.setDefaultError());
   }, []);
   useEffect(() => {
     if ((loginError?.length > 0 && loginError !== "init") || loginError === "")
       setLoading(false);
-  }, [loginError]);
+  }, [loginError, loading]);
   const onSubmit = (data) => {
     setLoading(true);
     dispatch(login(data));

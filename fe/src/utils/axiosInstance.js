@@ -1,7 +1,9 @@
 import axios from "axios";
 import { api_deploy } from "./config";
 
-const axiosInstance = axios.create({ baseURL: api_deploy });
+const axiosInstance = axios.create({
+  baseURL: api_deploy,
+});
 
 axiosInstance.interceptors.response.use(
   function (response) {

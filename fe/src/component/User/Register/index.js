@@ -20,29 +20,40 @@ export default function Register(props) {
   const [loading, setLoading] = useState(false);
   const [isPasswordMatched, setIsPasswordMatched] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const { t } = useTranslation();
+
   useEffect(() => {
     dispatch(registerActions.resetResponse());
   }, []);
+
   useEffect(() => {
     if (registerError === "") {
       dispatch(registerActions.resetResponse());
       navigate("/login");
       setLoading(false);
-    } else if (registerError?.length > 0 && registerError !== "init")
-      setLoading(false);
-  }, [registerError]);
+    } else setLoading(false);
+  }, [registerError, loading]);
+
   const onSubmit = (data) => {
     if (data.password !== data.repassword) setIsPasswordMatched(false);
     else {
+      let user = {
+        user_name: data.name,
+        user_email: data.email,
+        user_phone: data.phone,
+        user_address: "Viet Nam",
+        user_role: "client",
+        user_password: data.password,
+      };
       setIsPasswordMatched(true);
       setLoading(true);
-      dispatch(RegisterThunk(data));
+      dispatch(RegisterThunk(user));
     }
   };
   return (

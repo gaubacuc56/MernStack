@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Dialog } from "@mui/material";
 import style from "./header.module.css";
 import logo from "../../../assets/img/logo.png";
 import { useSelector } from "react-redux";
 import { cartSelectors } from "../../../redux/slices/cart";
+import { loginSelectors } from "../../../redux/slices/auth/login";
+
 import useMediaQuery from "../../../hooks/useMediaQuery";
+import ProfileModal from "./ProfileModal/ProfileModal";
 import { useTranslation } from "react-i18next";
+
 export default function Header() {
+  const isNotMobile = useMediaQuery("(min-width:768px)");
   const { t } = useTranslation();
+
   const cart = useSelector(cartSelectors.myCart);
+  const currentUser = useSelector(loginSelectors.account);
+
   const [find_value, setFind_value] = useState("");
   const [cartNumber, setCartNumber] = useState();
-
-  const isNotMobile = useMediaQuery("(min-width:768px)");
+  const [openProfile, setOpenProfile] = useState(false);
+  const handleOpenProfile = () => setOpenProfile(true);
+  const handleCloseProfile = () => setOpenProfile(false);
 
   useEffect(() => {
     let total = 0;
@@ -22,7 +32,7 @@ export default function Header() {
     setCartNumber(total);
   }, [cart]);
   return (
-    <div>
+    <>
       <header>
         <div className={`${style.main_container} grid`}>
           <a href="#" className={style.homeReload}>
@@ -45,9 +55,22 @@ export default function Header() {
           )}
 
           <div className={style.operation}>
-            <Link to="/login" className={style.account}>
-              <i className="far fa-user" />
-            </Link>
+            {Object.keys(currentUser).length === 0 ? (
+              <Link to="/login" className={style.account}>
+                <i className="far fa-user" />
+              </Link>
+            ) : (
+              <div
+                // onClick={handleOpenProfile}
+                className={`${style.account} ${style.loggedIn}`}
+              >
+                <i class="fa-solid fa-user"></i>
+                <i
+                  class="fa-solid fa-sort-down"
+                  style={{ fontSize: "18px", marginLeft: "5px" }}
+                ></i>
+              </div>
+            )}
 
             <Link to="/Cart">
               <div className={style.cart}>
@@ -67,6 +90,9 @@ export default function Header() {
           )}
         </div>
       </header>
-    </div>
+      <Dialog open={openProfile} onClose={handleCloseProfile}>
+        <ProfileModal></ProfileModal>
+      </Dialog>
+    </>
   );
 }

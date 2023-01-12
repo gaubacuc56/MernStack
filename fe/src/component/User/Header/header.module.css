@@ -54,6 +54,12 @@ header {
 .account i {
   font-size: 25px;
 }
+.loggedIn {
+  position: relative;
+
+  display: flex;
+  align-items: flex-end;
+}
 
 .cart {
   position: relative;
@@ -125,9 +131,10 @@ header {
     right: 0px;
     cursor: pointer;
   }
-
-
-
+}
+.inforModal {
+  right: 20px;
+  top: 20px;
 }
 
 @media (min-width: 1140px) {

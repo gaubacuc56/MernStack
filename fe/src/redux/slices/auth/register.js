@@ -14,16 +14,7 @@ const initialState = {
 export const RegisterThunk = createAsyncThunk(
   "register/register",
   rejectWithRawError(async (data) => {
-    let user = {
-      user_name: data.name,
-      user_email: data.email,
-      user_phone: data.phone,
-      user_address: "Viet Nam",
-      user_role: "client",
-      user_password: data.password,
-    };
-    const response = await axios.post("auth/register", { ...user });
-    return response.data;
+    await axios.post("auth/register", { ...data });
   })
 );
 const registerSlice = createSlice({
@@ -34,17 +25,17 @@ const registerSlice = createSlice({
       state.response = "init";
     },
   },
-  extraReducers: {
-    [RegisterThunk.fulfilled]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(RegisterThunk.fulfilled, (state) => {
       state.response = "";
       Toast("success", "Đăng ký thành công", "top-right");
-    },
-    [RegisterThunk.rejected]: (state, action) => {
+    });
+    builder.addCase(RegisterThunk.rejected, (state, action) => {
       if (action.payload.error.user_phone)
         state.response = action.payload.error.user_phone;
       else if (action.payload.error.user_email)
         state.response = action.payload.error.user_email;
-    },
+    });
   },
 });
 
@@ -52,5 +43,6 @@ const selector = (state) => state[name];
 const responses = createSelector(selector, ({ response }) => response);
 export const registerSelectors = { responses };
 
-export const registerActions = registerSlice.actions;
+const { resetResponse } = registerSlice.actions;
+export const registerActions = { resetResponse };
 export default registerSlice.reducer;
