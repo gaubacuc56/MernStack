@@ -3,7 +3,8 @@ const User = require("../model/user");
 
 const isAuthenticated = async (req, res, next) => {
   try {
-    const { token } = req.cookies;
+    const Authorization = req.header("authorization");
+    const token = Authorization.replace("Bearer ", "");
     if (!token) {
       return next("Please login to access the data");
     }

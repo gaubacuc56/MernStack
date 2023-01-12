@@ -40,7 +40,7 @@ const authControllers = {
       const newUser = new User(req.body);
       await newUser.save();
       const token = createToken(newUser._id);
-      return res.cookie("", token).json({
+      return res.cookie("token", token).json({
         success: true,
         message: "User registered successfully",
         data: newUser,
@@ -54,7 +54,9 @@ const authControllers = {
     try {
       const { user_info, user_password } = req.body;
       if (!user_info || !user_password) {
-        return res.json({ message: "Please enter all the details" });
+        return res
+          .status(400)
+          .json({ message: "Please enter all the details" });
       }
 
       /* Check if user is existed */
@@ -63,7 +65,9 @@ const authControllers = {
       });
 
       if (!userExist) {
-        return res.json({ message: "Invalid email/phone or password" });
+        return res
+          .status(400)
+          .json({ message: "Invalid email/phone or password" });
       }
 
       /* Check if the password is matched*/
@@ -72,17 +76,17 @@ const authControllers = {
         userExist.user_password
       );
       if (!isPasswordMatched) {
-        return res.json({ message: "Invalid email/phone or password" });
+        return res
+          .status(400)
+          .json({ message: "Invalid email/phone or password" });
       }
 
       const token = createToken(userExist._id);
-      return res
-        .cookie("token", token)
-        .json({
-          success: true,
-          message: "Login Successfully",
-          userToken: token,
-        });
+      return res.cookie("token", token).json({
+        success: true,
+        message: "Login Successfully",
+        userToken: token,
+      });
     } catch (error) {
       let errors = handleError(error);
       res.status(400).json(errors);
@@ -91,12 +95,13 @@ const authControllers = {
 
   getAllUser: async (req, res) => {
     try {
-      const users = await User.find(); /* <=> SELECT * FROM User */
+      const users = await User.find();
       res.status(200).json(users);
     } catch (error) {
       res.status(500).json(error);
     }
   },
+
   getUser: async (req, res, next) => {
     try {
       res.status(200).json(req.user);
