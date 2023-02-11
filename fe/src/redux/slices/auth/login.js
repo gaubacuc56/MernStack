@@ -4,6 +4,7 @@ import {
   createAsyncThunk,
 } from "@reduxjs/toolkit";
 import axios from "../../../utils/axiosInstance";
+import Toast from "../../../component/Toast";
 
 const name = "login";
 const initialState = {
@@ -47,6 +48,7 @@ const userSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       state.user = action.payload;
       state.errorMessage = "";
+      Toast("success", "Đăng nhập thành công", "top-right");
     });
   },
 });

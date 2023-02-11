@@ -1,9 +1,4 @@
-import {
-  createSelector,
-  createSlice,
-  createAsyncThunk,
-} from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
 
 const name = "cart";

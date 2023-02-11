@@ -1,10 +1,12 @@
 import { lazy } from "react";
-import Layout from "../layout/User/Layout";
-import Login from "../component/User/Login";
-import Register from "../component/User/Register";
-const HomePage = lazy(() => import("../pages/User/HomePage"));
-const ProductDetails = lazy(() => import("../pages/User/ProductDetails"));
-const Cart = lazy(() => import("../pages/User/Cart"));
+import Layout from "../layout/Layout";
+import Login from "../component/Login";
+import Register from "../component/Register";
+
+const HomePage = lazy(() => import("../pages/HomePage"));
+const ProductDetails = lazy(() => import("../pages/ProductDetails"));
+const Cart = lazy(() => import("../pages/Cart"));
+const UserInformation = lazy(() => import("../pages/UserInformation"));
 
 const routes = [
   {
@@ -29,6 +31,10 @@ const routes = [
       {
         path: "register",
         element: <Register></Register>,
+      },
+      {
+        path: "profile",
+        element: <UserInformation></UserInformation>,
       },
     ],
   },
