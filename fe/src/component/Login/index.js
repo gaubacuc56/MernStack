@@ -6,47 +6,63 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Alert } from "@mui/material";
-import { GoogleLogin } from "react-google-login";
-import { REACT_APP_GOOGLE_CLIENT_ID } from "../../utils/config";
-import {
-  login,
-  loginSelectors,
-  loginActions,
-} from "../../redux/slices/auth/login";
+import Toast from "../Toast";
+
+import { loginActions } from "../../redux/slices/auth/login";
+import { useGetTokenMutation, useGetUserQuery } from "../../redux/api/login";
 import style from "./login.module.css";
 
 export default function Login() {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const loginError = useSelector(loginSelectors.error);
+  const [error, setError] = useState("");
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { t } = useTranslation();
+  const [
+    getToken,
+    {
+      data: loginData,
+      isSuccess: isLoginSuccess,
+      isError: isLoginError,
+      error: loginerror,
+      isLoading: isGetTokenLoading,
+    },
+  ] = useGetTokenMutation();
+
+  const {
+    data: userData,
+    isSuccess: isGetUserSuccess,
+    refetch: getUser,
+  } = useGetUserQuery(loginData?.userToken);
+
+  const onSubmit = async (data) => {
+    let user = {
+      user_info: data.name,
+      user_password: data.password,
+    };
+    await getToken(user);
+  };
 
   useEffect(() => {
-    dispatch(loginActions.setDefaultError());
-  }, []);
+    if (isLoginSuccess) {
+      Toast("success", "Đăng nhập thành công", "top-right");
+      dispatch(loginActions.setToken(loginData.userToken));
+      getUser();
+    } else if (isLoginError) setError(loginerror.data.message);
+  }, [isLoginSuccess, isLoginError]);
+
   useEffect(() => {
-    if (loginError === "") {
-      dispatch(loginActions.setDefaultError());
-      navigate("/profile");
-      setLoading(false);
-    } else setLoading(false);
-  }, [loginError, loading]);
-  const onSubmit = (data) => {
-    setLoading(true);
-    dispatch(login(data));
-  };
-  const handleGoogleLogin = (googleData) => {
-    console.log(googleData.profileObj);
-  };
-  const errorGoogleLogin = (res) => {
-    console.log("fail: ", res);
-  };
+    if (isGetUserSuccess) {
+      dispatch(loginActions.setUser(userData));
+      navigate("/");
+    }
+  }, [isGetUserSuccess]);
+
   return (
     <div className={style.login}>
       <form className={style.loginForm} onSubmit={handleSubmit(onSubmit)}>
@@ -55,7 +71,7 @@ export default function Login() {
           <i className="fas fa-user"></i>
           <input
             style={errors.name ? { border: "2px solid red" } : null}
-            disabled={loading}
+            disabled={isGetTokenLoading}
             type="text"
             id={style.loginName}
             placeholder={t("LOGIN.EMAIL")}
@@ -69,7 +85,7 @@ export default function Login() {
           <i className="fas fa-unlock-alt"></i>
           <input
             style={errors.password ? { border: "2px solid red" } : null}
-            disabled={loading}
+            disabled={isGetTokenLoading}
             type="password"
             id={style.loginPassword}
             placeholder={t("LOGIN.PASSWORD")}
@@ -79,14 +95,14 @@ export default function Login() {
         {errors.password && (
           <span className={style.error}>This field is required</span>
         )}
-        {loginError?.length > 0 && loginError !== "init" && (
+        {error?.length > 0 && (
           <Alert sx={{ marginTop: "20px" }} severity="error">
-            {loginError}
+            {error}
           </Alert>
         )}
         <div className={style.btn_area}>
           <button type="submit">
-            {loading ? (
+            {isGetTokenLoading ? (
               <Spinner size="sm" animation="border" role="status"></Spinner>
             ) : (
               t("LOGIN.TITLE")

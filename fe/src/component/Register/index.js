@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  RegisterThunk,
-  registerSelectors,
-  registerActions,
-} from "../../redux/slices/auth/register";
+
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useRegisterMutation } from "../../redux/api/register";
+
+import Toast from "../Toast";
 import { Alert } from "@mui/material";
 
 import Spinner from "react-bootstrap/Spinner";
 
 import style from "./register.module.css";
-export default function Register(props) {
-  const dispatch = useDispatch();
+export default function Register() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const registerError = useSelector(registerSelectors.responses);
-  const [loading, setLoading] = useState(false);
+  
+  const [registerError, setRegisterError] = useState("");
   const [isPasswordMatched, setIsPasswordMatched] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -26,23 +24,17 @@ export default function Register(props) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { t } = useTranslation();
+  const [
+    Register,
+    {
+      isSuccess: isRegisterSuccess,
+      isError: isRegisterError,
+      error: RegisterError,
+      isLoading: isRegisterLoading,
+    },
+  ] = useRegisterMutation();
 
-  useEffect(() => {
-    dispatch(registerActions.resetResponse());
-  }, []);
-
-  useEffect(() => {
-    if (registerError === "") {
-      dispatch(registerActions.resetResponse());
-      navigate("/login");
-      setLoading(false);
-    } else setLoading(false);
-  }, [registerError, loading]);
-
-  const onSubmit = (data) => {
-    setLoading(true);
-
+  const onSubmit = async (data) => {
     if (data.password !== data.repassword) setIsPasswordMatched(false);
     else {
       let user = {
@@ -54,9 +46,22 @@ export default function Register(props) {
         user_password: data.password,
       };
       setIsPasswordMatched(true);
-      dispatch(RegisterThunk(user));
+      await Register(user);
     }
   };
+
+  useEffect(() => {
+    if (isRegisterSuccess) {
+      Toast("success", "Đăng ký thành công", "top-right");
+      navigate("/login");
+    } else if (isRegisterError) {
+      console.log(RegisterError);
+      setRegisterError(
+        RegisterError.data.user_email || RegisterError.data.user_phone
+      );
+    }
+  }, [isRegisterSuccess, isRegisterError]);
+
   return (
     <div className={style.register}>
       <form className={style.registerForm} onSubmit={handleSubmit(onSubmit)}>
@@ -155,7 +160,7 @@ export default function Register(props) {
           <span className={style.error}>Mật khẩu không khớp</span>
         )}
 
-        {registerError?.length > 0 && registerError !== "init" && (
+        {registerError?.length > 0 && (
           <Alert sx={{ marginTop: "20px" }} severity="error">
             {registerError}
           </Alert>
@@ -163,7 +168,7 @@ export default function Register(props) {
 
         <div className={style.btn_area}>
           <button type="submit">
-            {loading ? (
+            {isRegisterLoading ? (
               <Spinner size="sm" animation="border" role="status"></Spinner>
             ) : (
               t("REGISTER.TITLE")
