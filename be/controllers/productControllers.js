@@ -18,7 +18,7 @@ const productControllers = {
       res.status(500).json(error);
     }
   },
-  getAProduct: async (req, res) => {
+  getProductById: async (req, res) => {
     try {
       const product = await Product.findById(req.params.id);
       /* <=> SELECT * FROM Product where Product.id = <id trả về> */
