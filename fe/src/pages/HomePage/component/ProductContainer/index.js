@@ -1,29 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Autoplay } from "swiper";
 
 import ProductCard from "../../../../component/ProductCard";
-import { api_deploy } from "../../../../utils/config";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
-import { useGetProductByValueQuery } from "../../../../redux/api/product";
+import { useGetProductByCategoriesQuery } from "../../../../redux/api/product";
 
 import Spinner from "react-bootstrap/Spinner";
 
 import style from "./productContainer.module.css";
-
 // Import Swiper styles
 import "swiper/css";
+
 export default function ProductContainer(props) {
   const isMobile = useMediaQuery("(max-width:768px)");
   const { t } = useTranslation();
 
-  const { data, isLoading, isSuccess } = useGetProductByValueQuery(
+  const { data, isLoading, isSuccess } = useGetProductByCategoriesQuery(
     props.category.toLowerCase()
   );
+ 
 
   return (
     <div className={`${style.newItem} grid`}>
@@ -50,7 +49,7 @@ export default function ProductContainer(props) {
           <>
             {!isMobile ? (
               <>
-                {data?.slice(0, 4).map((item) => (
+                {data?.products.slice(0, 4).map((item) => (
                   <div
                     className={`${style.item_container} col-xl-3 col-sm-6 d-flex justify-content-center`}
                     key={item._id}
@@ -80,7 +79,7 @@ export default function ProductContainer(props) {
                   }}
                   modules={[Autoplay, FreeMode]}
                 >
-                  {data?.slice(0, 4).map((item) => (
+                  {data?.products.slice(0, 4).map((item) => (
                     <div className="" key={item._id}>
                       <SwiperSlide>
                         <ProductCard
@@ -102,7 +101,7 @@ export default function ProductContainer(props) {
 
       <div className={style.btnArea}>
         <Link to={`/Sanpham_display/all`}>
-          <button disabled={data?.length == 0} className={style.showAll_btn}>
+          <button disabled={data?.products.length == 0} className={style.showAll_btn}>
             {t("PRO_CONTAINER.BUTTON")}
           </button>
         </Link>
