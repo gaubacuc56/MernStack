@@ -7,9 +7,11 @@ var bodyParser = require("body-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
+
 /* Import route */
 const productRoute = require("./routes/product");
 const authRoute = require("./routes/auth");
+const invoiceRoute = require("./routes/invoice");
 
 /* Define Port */
 const PORT = process.env.PORT || 5000;
@@ -37,3 +39,4 @@ app.use(cookieParser());
 /* Routes: */
 app.use("/api/product", productRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/invoice", invoiceRoute);

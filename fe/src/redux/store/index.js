@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./rootReducer";
 import storage from "redux-persist/lib/storage";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";

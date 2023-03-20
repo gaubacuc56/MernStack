@@ -10,14 +10,6 @@ const productControllers = {
       res.status(500).json(error);
     }
   },
-  getAllProduct: async (req, res) => {
-    try {
-      const products = await Product.find(); /* <=> SELECT * FROM Product */
-      res.status(200).json(products);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  },
   getProductById: async (req, res) => {
     try {
       const product = await Product.findById(req.params.id);
@@ -28,16 +20,52 @@ const productControllers = {
     }
   },
 
-  getProductByValue: async (req, res) => {
+  getProducts: async (req, res) => {
     try {
-      const product = await Product.find({
-        $or: [
-          { product_name: { $regex: req.params.value } },
-          { product_categories: { $regex: req.params.value } },
-        ],
+      const page = parseInt(req.query.page) - 1 || 0;
+      const limit = parseInt(req.query.limit) || 5;
+      const search = req.query.search || "";
+      let sort = req.query.sort || "product_price";
+      let product_categories = req.query.product_categories || "All";
+
+      const categoriesOptions = ["soccer", "tennis", "running", "basketball"];
+
+      product_categories === "All"
+        ? (product_categories = [...categoriesOptions])
+        : (product_categories = req.query.product_categories.split(","));
+      req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
+
+      let sortBy = {};
+      if (sort[1]) {
+        sortBy[sort[0]] = sort[1];
+      } else {
+        sortBy[sort[0]] = "asc";
+      }
+
+      const products = await Product.find({
+        product_name: { $regex: search, $options: "i" },
+      })
+        .where("product_categories")
+        .in([...product_categories])
+        .sort(sortBy)
+        .skip(page * limit)
+        .limit(limit);
+
+      const total = await Product.countDocuments({
+        product_categories: { $in: [...product_categories] },
+        product_name: { $regex: search, $options: "i" },
       });
-      /* <=> SELECT * FROM Product where Product.id = <id trả về> */
-      res.status(200).json(product);
+
+      const response = {
+        error: false,
+        total,
+        page: page + 1,
+        limit,
+        categories: categoriesOptions,
+        products,
+      };
+
+      res.status(200).json(response);
     } catch (error) {
       res.status(500).json(error);
     }
