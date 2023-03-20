@@ -2,7 +2,7 @@
 
 ## Technology
 
-- Front-end: ReactJS, Redux, React-router-dom, Boostrap, i18next, CSS Modules.
+- Front-end: ReactJS, Redux, React-router-dom, Bootstrap, i18next, CSS Modules.
 
 - Back-end: NodeJS, ExpressJS, MongoDB.
 
