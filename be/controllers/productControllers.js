@@ -71,7 +71,7 @@ const productControllers = {
     }
   },
 
-  updateAProduct: async (req, res) => {
+  updateProduct: async (req, res) => {
     try {
       const product = await Product.findById(req.params.id);
       await product.updateOne({ $set: req.body });

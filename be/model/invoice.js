@@ -13,6 +13,8 @@ const invoiceSchema = new mongoose.Schema({
       required: true,
     },
   ],
+  invoice_status: { type: String, required: true },
+  invoice_deliveryAddress: { type: String, required: true },
   invoice_createDate: { type: Date, required: true },
   invoice_total: { type: Number, required: true },
 });

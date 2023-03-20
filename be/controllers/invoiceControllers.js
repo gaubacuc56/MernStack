@@ -1,8 +1,16 @@
 const Invoice = require("../model/invoice");
+
+
+const validStatus = ['New', 'Delivering', 'Done', 'Deleted']
 const InvoiceControllers = {
   // Add:
   addInvoice: async (req, res) => {
     try {
+      if (validStatus.includes(req.body.invoice_status) === false) {
+        return res
+          .status(400)
+          .json({ message: "Invalid status" });
+      }
       const newInvoice = new Invoice(req.body);
       const saveInvoice = await newInvoice.save();
       res.status(200).json(saveInvoice);
@@ -60,11 +68,29 @@ const InvoiceControllers = {
   getInvoiceByUser: async (req, res) => {
     try {
       const invoice = await Invoice.find({
-        invoice_createdBy: req.params.userId,
+        invoice_createdBy: req.user.id,
       })
         .populate("invoice_createdBy")
         .populate("invoice_products");
       res.status(200).json(invoice);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  },
+
+  // Update status
+  updateInvoice: async (req, res) => {
+    try {
+      if (req.body.hasOwnProperty('invoice_status')) {
+        if (validStatus.includes(req.body.invoice_status) === false) {
+          return res
+            .status(400)
+            .json({ message: "Invalid status" });
+        }
+      }
+      const invoice = await Invoice.findById(req.params.id);
+      await invoice.updateOne({ $set: req.body });
+      res.status(200).json("Update Successfully");
     } catch (error) {
       res.status(500).json(error);
     }
