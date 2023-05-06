@@ -27,7 +27,7 @@ const handleError = (err) => {
   return errors;
 };
 
-const maxAge =/*  0.25 * 24 * 60 * */ 60; // 6 hours
+const maxAge = /*  0.25 * 24 * 60 * */ 60; // 6 hours
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.TOKEN, {
     expiresIn: maxAge,
@@ -95,8 +95,45 @@ const authControllers = {
 
   getAllUser: async (req, res) => {
     try {
-      const users = await User.find();
-      res.status(200).json(users);
+      const page = parseInt(req.query.page) - 1 || 0;
+      const limit = parseInt(req.query.limit) || 5;
+
+      const name = req.query.name || "";
+      const email = req.query.email || "";
+      const phone = req.query.phone || "";
+
+  /*     const roleOptions = ["client", "admin"];
+
+      user_role === "All"
+        ? (user_role = [...roleOptions])
+        : (user_role = req.query.user_role.split(","));
+      req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]); */
+
+      const users = await User.find({
+        user_name: { $regex: name, $options: "i" },
+        user_email: { $regex: email, $options: "i" },
+        user_phone: { $regex: phone, $options: "i" },
+      })
+     /*    .where("user_role")
+        .in([...user_role]) */
+        .skip(page * limit)
+        .limit(limit);
+
+      const total = await User.countDocuments({
+        user_name: { $regex: name, $options: "i" },
+        user_email: { $regex: email, $options: "i" },
+        user_phone: { $regex: phone, $options: "i" },
+      });
+
+      const response = {
+        error: false,
+        total,
+        page: page + 1,
+        limit,
+        users,
+      };
+
+      res.status(200).json(response);
     } catch (error) {
       res.status(500).json(error);
     }
