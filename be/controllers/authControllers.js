@@ -101,6 +101,7 @@ const authControllers = {
       const name = req.query.name || "";
       const email = req.query.email || "";
       const phone = req.query.phone || "";
+      const address = req.query.address || "";
 
       /*     const roleOptions = ["client", "admin"];
 
@@ -113,6 +114,7 @@ const authControllers = {
         user_name: { $regex: name, $options: "i" },
         user_email: { $regex: email, $options: "i" },
         user_phone: { $regex: phone, $options: "i" },
+        user_address: { $regex: address, $options: "i" },
       })
         /*    .where("user_role")
         .in([...user_role]) */
@@ -123,6 +125,7 @@ const authControllers = {
         user_name: { $regex: name, $options: "i" },
         user_email: { $regex: email, $options: "i" },
         user_phone: { $regex: phone, $options: "i" },
+        user_address: { $regex: address, $options: "i" },
       });
 
       const response = {
