@@ -27,7 +27,7 @@ const handleError = (err) => {
   return errors;
 };
 
-const maxAge = /*  0.25 * 24 * 60 * */ 60; // 6 hours
+const maxAge = 0.25 * 24 * 60 * 60; // 6 hours
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.TOKEN, {
     expiresIn: maxAge,
@@ -102,7 +102,7 @@ const authControllers = {
       const email = req.query.email || "";
       const phone = req.query.phone || "";
 
-  /*     const roleOptions = ["client", "admin"];
+      /*     const roleOptions = ["client", "admin"];
 
       user_role === "All"
         ? (user_role = [...roleOptions])
@@ -114,7 +114,7 @@ const authControllers = {
         user_email: { $regex: email, $options: "i" },
         user_phone: { $regex: phone, $options: "i" },
       })
-     /*    .where("user_role")
+        /*    .where("user_role")
         .in([...user_role]) */
         .skip(page * limit)
         .limit(limit);
