@@ -8,5 +8,15 @@ router.get("/getProducts", productControllers.getProducts);
 
 router.post("/newProduct", isAuthenticated, productControllers.addProduct);
 
-router.put("/updateProduct/:id", isAuthenticated, productControllers.updateProduct);
+router.put(
+  "/updateProduct/:id",
+  isAuthenticated,
+  productControllers.updateProduct
+);
+router.delete(
+  "/deleteProduct/:id",
+  isAuthenticated,
+  productControllers.deleteProduct
+);
+
 module.exports = router;
