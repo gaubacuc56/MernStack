@@ -76,7 +76,7 @@
 }
 
 .btn_area button:active {
-  background-color: #1fbbd3;
+  background-color: var(--secondary-color);
 }
 
 .optional {

@@ -1,0 +1,49 @@
+.Payment {
+  padding-bottom: 20px;
+  width: 350px;
+  height: 100%;
+  box-shadow: 0 0.1rem 0.25rem grey;
+}
+.Payment #login-error {
+  text-align: center;
+  margin: 0;
+  padding-top: 20px;
+}
+.Payment h2 {
+  text-align: center;
+  margin: 0;
+  padding-top: 15px;
+}
+.Payment .payment_info {
+  padding-top: 20px;
+  font-size: 16px;
+  padding-left: 25px;
+}
+.Payment .payment_info .info_data {
+  font-weight: 700;
+  padding-left: 10px;
+}
+.Payment .payment_info #price {
+  color: var(--secondary-color);
+  padding-left: 10px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.Payment .btn_payment_area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+.Payment .btn_payment_area .btn_payment {
+  cursor: pointer;
+  width: 310px;
+  height: 35px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: var(--secondary-color);
+}

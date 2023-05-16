@@ -77,7 +77,7 @@
 
 .showAll_btn:hover {
   outline: none;
-  background-color: #1fbbd3;
+  background-color: var(--secondary-color);
 }
 
 .newItem_mainContainer {
