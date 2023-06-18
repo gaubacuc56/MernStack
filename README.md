@@ -14,6 +14,8 @@
 
 ## How to use
 
+Install NodeJS: https://nodejs.org/en/download
+
 ### For back-end server:
 
 - In "be" folder, install neccesary packages with command: "npm i".
